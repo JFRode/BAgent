@@ -10,7 +10,12 @@ import jade.core.behaviours.OneShotBehaviour;
  *         Antonio Roque Falcão Junior
  *         Joao Felipe Gonçalves
  */
-public class AgenteAtendente extends Agent{
+public class AgenteAtendente extends Agent {
+
+    public AgenteAtendente() {
+        this.getAID().setLocalName("Atendente");
+    }
+        
     @Override
     protected void setup(){
         addBehaviour(new OneShotBehaviour() {

@@ -13,6 +13,10 @@ import jade.lang.acl.ACLMessage;
  */
 public class AgenteCliente extends Agent {
 
+    public AgenteCliente() {
+        this.getAID().setLocalName("Cliente");
+    }
+    
     @Override
     protected void setup(){
         addBehaviour(new OneShotBehaviour() {
