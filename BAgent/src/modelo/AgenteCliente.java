@@ -13,7 +13,10 @@ import jade.lang.acl.ACLMessage;
  */
 public class AgenteCliente extends Agent {
 
-    public AgenteCliente() {
+    private int qtdBoletos;
+    
+    public AgenteCliente(int qtdBoletos) {
+        this.qtdBoletos = qtdBoletos;
         this.getAID().setLocalName("Cliente");
     }
     

@@ -1,5 +1,6 @@
 package modelo;
 
+import jade.core.AID;
 import visao.JanelaSimulacao;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -15,9 +16,11 @@ import jade.lang.acl.ACLMessage;
 public class AgenteGerente extends Agent{
 
     private int qtdClientes;
+    private int qtdAtendentesDisponiveis;
 
     public AgenteGerente() {
         this.qtdClientes = 0;
+        this.qtdAtendentesDisponiveis = 0;
         this.getAID().setLocalName("Gerente");
     }
     
@@ -27,7 +30,7 @@ public class AgenteGerente extends Agent{
 
             @Override
             public void action() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                //  Bem possivel que gerente não tenha OneShotBehavior
             }
         });
         
@@ -39,10 +42,16 @@ public class AgenteGerente extends Agent{
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Quero ser atendido!")) {
-                        if (JanelaSimulacao.listaClientes.size() >= 6) {
+                        if (JanelaSimulacao.listaClientes.size() == 7 || JanelaSimulacao.listaClientes.size() == 13 || JanelaSimulacao.listaClientes.size() == 18) {
                             // Envia mensagem para o atendente ir atender
+                            ACLMessage msgParaCliente = new ACLMessage(ACLMessage.INFORM);
+                            msgParaCliente.addReceiver(new AID("Atendente", AID.ISLOCALNAME));
+                            msgParaCliente.setLanguage("Português");
+                            msgParaCliente.setOntology("a"); // verificar se é necessário
+                            msgParaCliente.setContent("Alguém vá atender por favor!");
+                            myAgent.send(msgParaCliente);
+                            qtdAtendentesDisponiveis--;
                         }
-                        
                     }
                 }
             }
