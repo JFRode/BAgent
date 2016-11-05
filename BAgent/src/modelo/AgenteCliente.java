@@ -1,4 +1,4 @@
-package Model;
+package modelo;
 
 import jade.core.AID;
 import jade.core.Agent;

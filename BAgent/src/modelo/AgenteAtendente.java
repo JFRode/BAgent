@@ -1,4 +1,4 @@
-package Model;
+package modelo;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;

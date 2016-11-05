@@ -1,6 +1,6 @@
-package View;
+package visao;
 
-import Model.Cliente;
+import modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
