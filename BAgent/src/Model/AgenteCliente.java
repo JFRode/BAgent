@@ -12,8 +12,7 @@ import jade.lang.acl.ACLMessage;
  *         Joao Felipe Gonçalves
  */
 public class AgenteCliente extends Agent {
-    
-    
+
     @Override
     protected void setup(){
         addBehaviour(new OneShotBehaviour() {
@@ -23,7 +22,7 @@ public class AgenteCliente extends Agent {
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
                 msg.addReceiver(new AID("Gerente", AID.ISLOCALNAME));
                 msg.setLanguage("Português");
-                msg.setOntology(""); // verificar se é necessário
+                msg.setOntology("a"); // verificar se é necessário
                 msg.setContent("Quero ser atendido!");
                 myAgent.send(msg);
             }
