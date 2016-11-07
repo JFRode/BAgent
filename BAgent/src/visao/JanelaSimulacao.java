@@ -1,22 +1,23 @@
 package visao;
 
-import modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelo.agentes.AgenteAtendente;
+import modelo.agentes.AgenteCliente;
 
 public class JanelaSimulacao extends javax.swing.JFrame {
 
-    public static List<Cliente> listaClientes;
-    private static int qtdAtendentes;
+    public static List<AgenteCliente> listaClientes;
+    public static List<AgenteAtendente> listaAtendentes;
     
     public JanelaSimulacao() {
         initComponents();
         this.listaClientes = new ArrayList();
-        this.qtdAtendentes = 0;
+        this.listaAtendentes = new ArrayList();
     }
 
     /**
