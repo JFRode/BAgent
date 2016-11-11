@@ -33,7 +33,11 @@ O Agente cliente ao chegar a agencia solicita o atendimento de prioridade corres
 ### 5 - Ao ser convocado para assumir os atendimentos, o atendente verifica qual o caixa disponível. Após se alocar o atendente chama o próximo da fila.
   
 
-
+| Clientes | Atendentes |
+| ---- | ------- |
+| 0 a 6 | 1 |
+| 7 a 12 | 2 |
+| 13 a 18 | 3 |
 
 
 
