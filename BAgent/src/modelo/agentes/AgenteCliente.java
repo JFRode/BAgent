@@ -5,6 +5,7 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
+import visao.JanelaSimulacao;
 
 /**
  *
@@ -15,10 +16,13 @@ import jade.lang.acl.ACLMessage;
 public class AgenteCliente extends Agent {
 
     private int qtdBoletos;
+    private AgenteCliente aThis;
+    private Object imagemIcone;
     
     public AgenteCliente(String nomeCliente, int qtdBoletos) {
         this.getAID().setLocalName(nomeCliente);
         this.qtdBoletos = qtdBoletos;
+        this.aThis = this;
     }
     
     @Override
@@ -44,7 +48,8 @@ public class AgenteCliente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
-                        
+                        JanelaSimulacao.listaClientes.add(aThis);
+                        // imagemIcone.setVisible(true);
                     }
                 }
             }
