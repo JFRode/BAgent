@@ -29,6 +29,8 @@ O Agente cliente ao chegar a agencia solicita o atendimento de prioridade corres
 #### _Quando o cliente é criado na janela de simulação, é atribuido uma referência para uma cadeira na lista, de forma randomica, antes de se alocar o cliente verifica se a propriedade de visibilidade da Label está true, caso sim tenta outra cadeira.
 
 ### 4 - O Gerente verifica a fila de atendimento e a quantidade de atendentes, caso necessário aloca mais um atendente.
+
+### 5 - Ao ser convocado para assumir os atendimentos, o atendente verifica qual o caixa disponível. Após se alocar o atendente chama o próximo da fila.
   
 
 
