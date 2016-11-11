@@ -4,7 +4,6 @@ import jade.core.AID;
 import visao.JanelaSimulacao;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 
 /**
@@ -42,7 +41,7 @@ public class AgenteGerente extends Agent{
                         msgParaCliente.setContent("Sua senha é " + ultimaSenha);
                         myAgent.send(msgParaCliente);
                         ultimaSenha++;
-                        // 
+                        // Verifica se e necessario mais atendentes
                         if ((JanelaSimulacao.listaClientes.size() == 7 || 
                                 JanelaSimulacao.listaClientes.size() == 13 || 
                                 JanelaSimulacao.listaClientes.size() == 18) &&
