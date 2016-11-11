@@ -19,6 +19,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaClientes = new ArrayList();
         this.listaAtendentes = new ArrayList();
     }
+    
+    public void criaNovoCliente() {
+        //  TODO
+        //  Cria, ativa e isntancia na listaClientes
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
