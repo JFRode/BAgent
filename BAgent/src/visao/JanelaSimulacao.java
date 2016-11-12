@@ -12,20 +12,22 @@ import modelo.agentes.AgenteCliente;
 
 public class JanelaSimulacao extends javax.swing.JFrame {
 
-    public static List<AgenteCliente> listaClientes;
-    public static List<AgenteAtendente> listaAtendentes;
     public static List<JLabel> listaIconesClientes;
+    public static List<AgenteCliente> listaClientes;
+    public static List<AgenteAtendente> listaAtendentesDisponiveis;
+    public static List<AgenteAtendente> listaAtendentesAtendendo;
     
     public JanelaSimulacao() {
         initComponents();
         this.listaClientes = new ArrayList();
-        this.listaAtendentes = new ArrayList();
+        this.listaAtendentesDisponiveis = new ArrayList();
         this.listaIconesClientes = new ArrayList();
+        this.listaAtendentesAtendendo = new ArrayList();
     }
     
     public void criaNovoCliente() {
         //  TODO
-        //  Cria, ativa e isntancia na listaClientes
+        //  Cria, ativa e instancia na listaClientes
     }
 
     /**
