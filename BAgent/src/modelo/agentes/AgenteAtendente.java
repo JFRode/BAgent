@@ -21,6 +21,7 @@ public class AgenteAtendente extends Agent {
     
     private AgenteAtendente aThis;
     private JLabel imagemIcone;
+    private JLabel imagemIconeCadeiraDeAtendimento;
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
@@ -98,5 +99,9 @@ public class AgenteAtendente extends Agent {
     
     public boolean emAtendimento() {
         return emAtendimento;
+    }
+    
+    public JLabel getImagemIconeCadeiraDeAtendimento() {
+        return imagemIconeCadeiraDeAtendimento;
     }
 }
