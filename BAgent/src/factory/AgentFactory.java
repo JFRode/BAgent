@@ -6,7 +6,6 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.agentes.AgenteAtendente;
@@ -15,9 +14,11 @@ import modelo.agentes.AgenteGerente;
 
 /**
  *
- * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
- * Gonçalves
+ * @author Ailton Cardoso Junior
+ *         Antonio Roque Falcão Junior
+ *         Joao Felipe Gonçalves
  */
+
 public class AgentFactory {
 
     private ContainerController cc;
@@ -45,7 +46,7 @@ public class AgentFactory {
             agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{});
             agentController.start();
             for (int i = 0; i < 3; i++) {
-                agentController = cc.createNewAgent("Atendente" + (i + 1), AgenteAtendente.class.getName(), new Object[]{});
+                agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{});
                 agentController.start();
             }
         } catch (StaleProxyException ex) {
@@ -63,7 +64,7 @@ public class AgentFactory {
                     try {
                         int numCliente = rand.nextInt(2) + 1;
                         for (int i = 1; i <= numCliente; i++) {
-                            agentController = cc.createNewAgent("Cliente" + contCliente, AgenteCliente.class.getName(), new Object[]{});
+                            agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{});
                             agentController.start();
                             contCliente++;
                         }

@@ -3,7 +3,6 @@ package modelo.agentes;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import java.util.Random;
 import java.util.logging.Level;
@@ -13,9 +12,11 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
- * Gonçalves
+ * @author Ailton Cardoso Junior
+ *         Antonio Roque Falcão Junior
+ *         Joao Felipe Gonçalves
  */
+
 public class AgenteAtendente extends Agent {
     
     private AgenteAtendente aThis;
@@ -24,9 +25,8 @@ public class AgenteAtendente extends Agent {
     private String cliente;
     private boolean emAtendimento = false;
     
-    public AgenteAtendente(String nomeAtendente) {
+    public AgenteAtendente() {
         this.aThis = this;
-        this.getAID().setLocalName(nomeAtendente);
     }
     
     @Override

@@ -1,22 +1,23 @@
 package modelo.agentes;
 
 import jade.core.AID;
-import visao.JanelaSimulacao;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
- * Gonçalves
+ * @author Ailton Cardoso Junior
+ *         Antonio Roque Falcão Junior
+ *         Joao Felipe Gonçalves
  */
+
 public class AgenteGerente extends Agent {
 
     private int ultimaSenha;
 
     public AgenteGerente() {
-        this.getAID().setLocalName("Gerente");
         this.ultimaSenha = 0;
     }
 

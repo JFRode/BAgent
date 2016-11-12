@@ -5,23 +5,26 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
+import java.util.Random;
 import javax.swing.JLabel;
 import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
- * Gonçalves
+ * @author Ailton Cardoso Junior
+ *         Antonio Roque Falcão Junior
+ *         Joao Felipe Gonçalves
  */
+
 public class AgenteCliente extends Agent {
 
     private int qtdBoletos;
     private AgenteCliente aThis;
     private JLabel imagemIcone;
 
-    public AgenteCliente(String nomeCliente, int qtdBoletos) {
-        this.getAID().setLocalName(nomeCliente);
-        this.qtdBoletos = qtdBoletos;
+    public AgenteCliente() {
+        Random rand = new Random();
+        this.qtdBoletos = rand.nextInt(5) + 1;
         this.aThis = this;
     }
 
