@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import modelo.agentes.AgenteAtendente;
 import modelo.agentes.AgenteCliente;
 import modelo.agentes.AgenteGerente;
+import visao.JanelaSimulacao;
 
 /**
  *
@@ -46,7 +47,7 @@ public class AgentFactory {
             agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{});
             agentController.start();
             for (int i = 0; i < 3; i++) {
-                agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{});
+                agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{JanelaSimulacao.listaIconesAtendentes.get(i)});
                 agentController.start();
             }
         } catch (StaleProxyException ex) {

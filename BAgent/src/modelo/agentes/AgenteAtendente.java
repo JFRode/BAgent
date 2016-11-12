@@ -26,12 +26,13 @@ public class AgenteAtendente extends Agent {
     private boolean emAtendimento = false;
     
     public AgenteAtendente() {
+        JanelaSimulacao.listaAtendentesDisponiveis.add(this);
         this.aThis = this;
     }
     
     @Override
     protected void setup() {
-        
+        imagemIcone = (JLabel) getArguments()[0];
         addBehaviour(new CyclicBehaviour(this) {
             
             @Override
@@ -74,7 +75,6 @@ public class AgenteAtendente extends Agent {
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
                         imagemIcone.setVisible(true);
-                        
                     }
                 }
             }

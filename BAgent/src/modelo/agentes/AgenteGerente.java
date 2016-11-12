@@ -8,11 +8,9 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior
- *         Antonio Roque Falcão Junior
- *         Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
-
 public class AgenteGerente extends Agent {
 
     private int ultimaSenha;
@@ -37,13 +35,17 @@ public class AgenteGerente extends Agent {
                         enviaMensagem(myAgent, String.valueOf(ultimaSenha), "Sua senha é " + ultimaSenha);
                         ultimaSenha++;
 
-                        int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
-                        
-                        if (coeficiente >= 6 && JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
+                        if (JanelaSimulacao.listaAtendentesEmAtendimento.size() == 0) {
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                            
-                        }else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
-                            enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
+                        } else {
+                            int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
+
+                            if (coeficiente >= 6 && JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
+
+                            } else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
+                            }
                         }
                     }
                 }
