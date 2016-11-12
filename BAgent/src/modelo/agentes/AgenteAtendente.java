@@ -19,10 +19,10 @@ public class AgenteAtendente extends Agent {
     private AgenteAtendente aThis;
     private JLabel imagemIcone;
     
-    public AgenteAtendente(String nomeAtendente) {
+    /*public AgenteAtendente(String nomeAtendente) {
         this.aThis = this;
         this.getAID().setLocalName(nomeAtendente);
-    }
+    }*/
         
     @Override
     protected void setup(){

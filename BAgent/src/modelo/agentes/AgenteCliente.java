@@ -20,11 +20,11 @@ public class AgenteCliente extends Agent {
     private AgenteCliente aThis;
     private JLabel imagemIcone;
     
-    public AgenteCliente(String nomeCliente, int qtdBoletos) {
+    /*public AgenteCliente(String nomeCliente, int qtdBoletos) {
         this.getAID().setLocalName(nomeCliente);
         this.qtdBoletos = qtdBoletos;
         this.aThis = this;
-    }
+    }*/
     
     @Override
     protected void setup(){
