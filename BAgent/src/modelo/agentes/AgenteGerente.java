@@ -34,29 +34,28 @@ public class AgenteGerente extends Agent{
                     if (content.equalsIgnoreCase("Quero uma senha para atendimento")) {
                         msg.getSender().setLocalName(String.valueOf(ultimaSenha));  // Define a senha para o cliente
                         // Informa a senha
-                        ACLMessage msgParaCliente = new ACLMessage(ACLMessage.INFORM);
-                        msgParaCliente.addReceiver(new AID(String.valueOf(ultimaSenha), AID.ISLOCALNAME));
-                        msgParaCliente.setLanguage("Português");
-                        msgParaCliente.setOntology("a"); // verificar se é necessário
-                        msgParaCliente.setContent("Sua senha é " + ultimaSenha);
-                        myAgent.send(msgParaCliente);
+                        enviaMensagem(myAgent, String.valueOf(ultimaSenha), "Sua senha é " + ultimaSenha);
                         ultimaSenha++;
                         // Verifica se e necessario mais atendentes
                         if ((JanelaSimulacao.listaClientes.size() == 7 || 
                                 JanelaSimulacao.listaClientes.size() == 13 || 
                                 JanelaSimulacao.listaClientes.size() == 18) &&
-                                JanelaSimulacao.listaAtendentes.size() > 0) {
+                                JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
                             // Envia mensagem para o atendente primeiro da lista ir atender
-                            msgParaCliente = new ACLMessage(ACLMessage.INFORM);
-                            msgParaCliente.addReceiver(new AID(JanelaSimulacao.listaAtendentes.get(0).getAID().getLocalName(), AID.ISLOCALNAME));
-                            msgParaCliente.setLanguage("Português");
-                            msgParaCliente.setOntology("a"); // verificar se é necessário
-                            msgParaCliente.setContent("Vá atender por favor!");
-                            myAgent.send(msgParaCliente);
+                            enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
                         }
                     }
                 }
             }
         });
+    }
+    
+    public void enviaMensagem(Agent myAgent, String destino, String mensagem) {
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(new AID(destino, AID.ISLOCALNAME));
+        msg.setLanguage("Português");
+        msg.setOntology("a");
+        msg.setContent(mensagem);
+        myAgent.send(msg);
     }
 }
