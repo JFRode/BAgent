@@ -58,8 +58,14 @@ public class AgenteCliente extends Agent {
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
 
                         imagemIcone.setVisible(false);
+                        JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
                         JanelaSimulacao.listaClientesEmEspera.remove(aThis);
                         JanelaSimulacao.listaClientesEmAtendimento.add(aThis);
+                        
+                        //  Identifica o balcao de atendimento e se dirige a ele
+                        String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
+                        imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento.get(Integer.parseInt(balcaoDeAtendimento[1])).getImagemIconeCadeiraDeAtendimento();
+                        
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
 
