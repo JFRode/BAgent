@@ -48,7 +48,10 @@ public class AgentFactory {
             agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{});
             agentController.start();
             for (int i = 0; i < 3; i++) {
-                agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{JanelaSimulacao.listaIconesAtendentes.get(i)});
+                
+                agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{
+                    JanelaSimulacao.listaIconesAtendentes.get(i),
+                    JanelaSimulacao.listaIconesAtendimento.get(i)});
                 agentController.start();
             }
         } catch (StaleProxyException ex) {

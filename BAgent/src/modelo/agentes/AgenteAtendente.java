@@ -34,6 +34,7 @@ public class AgenteAtendente extends Agent {
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
+        imagemIconeCadeiraDeAtendimento = (JLabel) getArguments()[1];
         addBehaviour(new CyclicBehaviour(this) {
             
             @Override
