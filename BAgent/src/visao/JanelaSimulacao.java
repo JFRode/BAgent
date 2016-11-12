@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import modelo.agentes.AgenteAtendente;
@@ -13,11 +14,18 @@ public class JanelaSimulacao extends javax.swing.JFrame {
 
     public static List<AgenteCliente> listaClientes;
     public static List<AgenteAtendente> listaAtendentes;
+    public static List<JLabel> listaIconesClientes;
     
     public JanelaSimulacao() {
         initComponents();
         this.listaClientes = new ArrayList();
         this.listaAtendentes = new ArrayList();
+        this.listaIconesClientes = new ArrayList();
+    }
+    
+    public void criaNovoCliente() {
+        //  TODO
+        //  Cria, ativa e isntancia na listaClientes
     }
 
     /**
