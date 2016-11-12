@@ -31,8 +31,7 @@ public class AgenteGerente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Quero uma senha para atendimento")) {
 
-                        msg.getSender().setLocalName(String.valueOf(ultimaSenha));
-                        enviaMensagem(myAgent, String.valueOf(ultimaSenha), "Sua senha é " + ultimaSenha);
+                        enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
                         ultimaSenha++;
 
                         if (JanelaSimulacao.listaAtendentesEmAtendimento.size() == 0) {

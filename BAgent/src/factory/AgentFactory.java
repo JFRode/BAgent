@@ -8,6 +8,7 @@ import jade.wrapper.StaleProxyException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import modelo.agentes.AgenteAtendente;
 import modelo.agentes.AgenteCliente;
 import modelo.agentes.AgenteGerente;
@@ -65,7 +66,9 @@ public class AgentFactory {
                     try {
                         int numCliente = rand.nextInt(2) + 1;
                         for (int i = 1; i <= numCliente; i++) {
-                            agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{});
+                            JLabel label = JanelaSimulacao.listaIconesClientes.get(rand.nextInt(JanelaSimulacao.listaIconesClientes.size()));
+                            JanelaSimulacao.listaIconesClientes.remove(label);
+                            agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                             agentController.start();
                             contCliente++;
                         }

@@ -11,11 +11,9 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior
- *         Antonio Roque Falcão Junior
- *         Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
-
 public class AgenteCliente extends Agent {
 
     private int qtdBoletos;
@@ -26,10 +24,12 @@ public class AgenteCliente extends Agent {
         Random rand = new Random();
         this.qtdBoletos = rand.nextInt(5) + 1;
         this.aThis = this;
+        JanelaSimulacao.listaClientesEmEspera.add(this);
     }
 
     @Override
     protected void setup() {
+        imagemIcone = (JLabel) getArguments()[0];
         addBehaviour(new OneShotBehaviour() {
 
             @Override
@@ -51,21 +51,18 @@ public class AgenteCliente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
-
-                        JanelaSimulacao.listaClientesEmEspera.add(aThis);
                         imagemIcone.setVisible(true);
 
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
-
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
                         JanelaSimulacao.listaClientesEmEspera.remove(aThis);
                         JanelaSimulacao.listaClientesEmAtendimento.add(aThis);
-                        
+
                         //  Identifica o balcao de atendimento e se dirige a ele
                         String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
                         imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento.get(Integer.parseInt(balcaoDeAtendimento[1])).getImagemIconeCadeiraDeAtendimento();
-                        
+
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
 

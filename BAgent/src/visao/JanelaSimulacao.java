@@ -30,7 +30,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaIconesClientes = new ArrayList();
         this.listaIconesAtendentes = new ArrayList();
         this.listaAtendentesEmAtendimento = new ArrayList();
-        this.agentFactory = new AgentFactory();
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
             listaIconesClientes.add((JLabel) component);
@@ -40,6 +39,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
             listaIconesAtendentes.add((JLabel) component);
             component.setName("Atendente" + (cont++));
         }
+        this.agentFactory = new AgentFactory();
     }
 
     /**

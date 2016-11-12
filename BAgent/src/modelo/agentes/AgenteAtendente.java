@@ -45,6 +45,7 @@ public class AgenteAtendente extends Agent {
                         
                         JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
                         imagemIcone.setVisible(true);
+                        
                         proximoCliente(myAgent);
                         
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
