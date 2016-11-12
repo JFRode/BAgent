@@ -14,17 +14,19 @@ import modelo.agentes.AgenteCliente;
 public class JanelaSimulacao extends javax.swing.JFrame {
 
     public static List<JLabel> listaIconesClientes;
-    public static List<AgenteCliente> listaClientes;
+    public static List<AgenteCliente> listaClientesEmEspera;
+    public static List<AgenteCliente> listaClientesEmAtendimento;
     public static List<AgenteAtendente> listaAtendentesDisponiveis;
-    public static List<AgenteAtendente> listaAtendentesAtendendo;
-    private AgentFactory agentFactory; 
-    
+    public static List<AgenteAtendente> listaAtendentesEmAtendimento;
+    private AgentFactory agentFactory;
+
     public JanelaSimulacao() {
         initComponents();
-        this.listaClientes = new ArrayList();
+        this.listaClientesEmEspera = new ArrayList();
+        this.listaClientesEmAtendimento = new ArrayList();
         this.listaAtendentesDisponiveis = new ArrayList();
         this.listaIconesClientes = new ArrayList();
-        this.listaAtendentesAtendendo = new ArrayList();
+        this.listaAtendentesEmAtendimento = new ArrayList();
         this.agentFactory = new AgentFactory();
     }
 
