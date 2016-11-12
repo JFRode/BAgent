@@ -16,10 +16,10 @@ public class AgenteGerente extends Agent{
 
     private int ultimaSenha;
     
-    public AgenteGerente() {
+    /*public AgenteGerente() {
         this.getAID().setLocalName("Gerente");
         this.ultimaSenha = 0;
-    }
+    }*/
     
     @Override
     protected void setup(){

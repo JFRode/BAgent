@@ -1,5 +1,6 @@
 package visao;
 
+import factory.AgentFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static List<AgenteCliente> listaClientes;
     public static List<AgenteAtendente> listaAtendentesDisponiveis;
     public static List<AgenteAtendente> listaAtendentesAtendendo;
+    private AgentFactory agentFactory; 
     
     public JanelaSimulacao() {
         initComponents();
@@ -23,11 +25,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaAtendentesDisponiveis = new ArrayList();
         this.listaIconesClientes = new ArrayList();
         this.listaAtendentesAtendendo = new ArrayList();
-    }
-    
-    public void criaNovoCliente() {
-        //  TODO
-        //  Cria, ativa e instancia na listaClientes
+        this.agentFactory = new AgentFactory();
     }
 
     /**
