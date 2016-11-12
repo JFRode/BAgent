@@ -5,6 +5,7 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
+import javax.swing.JLabel;
 import visao.JanelaSimulacao;
 
 /**
@@ -17,7 +18,7 @@ public class AgenteCliente extends Agent {
 
     private int qtdBoletos;
     private AgenteCliente aThis;
-    private Object imagemIcone;
+    private JLabel imagemIcone;
     
     public AgenteCliente(String nomeCliente, int qtdBoletos) {
         this.getAID().setLocalName(nomeCliente);
@@ -49,10 +50,25 @@ public class AgenteCliente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
                         JanelaSimulacao.listaClientes.add(aThis);
-                        // imagemIcone.setVisible(true);
+                        imagemIcone.setVisible(true);
+                    } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
+                        // Pegar o sender e saber de que mesa esta falando
+                        // setvisiblefalse
+                        // novo ponteiro de posição passa a ser a cadeira da frente do atendente
+                        enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
+                        qtdBoletos--;
                     }
                 }
             }
         });
+    }
+    
+    public void enviaMensagem(Agent myAgent, String destino, String mensagem) {
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(new AID(destino, AID.ISLOCALNAME));
+        msg.setLanguage("Português");
+        msg.setOntology("a");
+        msg.setContent(mensagem);
+        myAgent.send(msg);
     }
 }
