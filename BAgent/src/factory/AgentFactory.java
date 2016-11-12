@@ -45,13 +45,14 @@ public class AgentFactory {
         //Cria o container contido no profile
         cc = runtime.createAgentContainer(profile);
         try {
-            agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{});
+            agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{JanelaSimulacao.Gerente});
             agentController.start();
             for (int i = 0; i < 3; i++) {
                 
                 agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{
                     JanelaSimulacao.listaIconesAtendentes.get(i),
-                    JanelaSimulacao.listaIconesAtendimento.get(i)});
+                    JanelaSimulacao.listaIconesAtendimento.get(i), 
+                    JanelaSimulacao.listaIconesEscritorio.get(i)});
                 agentController.start();
             }
         } catch (StaleProxyException ex) {

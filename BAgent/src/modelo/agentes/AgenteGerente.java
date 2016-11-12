@@ -4,6 +4,7 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import javax.swing.JLabel;
 import visao.JanelaSimulacao;
 
 /**
@@ -14,6 +15,7 @@ import visao.JanelaSimulacao;
 public class AgenteGerente extends Agent {
 
     private int ultimaSenha;
+    private JLabel imagemIcone;
 
     public AgenteGerente() {
         this.ultimaSenha = 0;
@@ -21,7 +23,7 @@ public class AgenteGerente extends Agent {
 
     @Override
     protected void setup() {
-
+        imagemIcone = (JLabel) getArguments()[0];
         addBehaviour(new CyclicBehaviour(this) {
 
             @Override

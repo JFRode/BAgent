@@ -77,6 +77,7 @@ public class AgenteCliente extends Agent {
                     } else if (content.equalsIgnoreCase("Obrigado, volte sempre!")) {
                         JanelaSimulacao.listaClientesEmAtendimento.remove(aThis);
                         imagemIcone.setVisible(false);
+                        block();
                     }
                 }
             }
