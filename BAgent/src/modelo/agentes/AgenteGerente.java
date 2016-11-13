@@ -38,7 +38,7 @@ public class AgenteGerente extends Agent {
 
                         if (JanelaSimulacao.listaAtendentesEmAtendimento.size() == 0) {
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                            System.out.println("Gerente: Não tem ninguem atendendo ainda.");
+                           
                         } else {
                             int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
 
