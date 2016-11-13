@@ -49,6 +49,7 @@ public class AgenteAtendente extends Agent {
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
                         System.out.println(getLocalName() + " Recebe: " + content);
                         JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
+                        JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
                         
