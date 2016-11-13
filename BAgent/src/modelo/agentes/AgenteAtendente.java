@@ -29,6 +29,7 @@ public class AgenteAtendente extends Agent {
     
     public AgenteAtendente() {
         JanelaSimulacao.listaAtendentesDisponiveis.add(this);
+        this.random = new Random();
         this.aThis = this;
     }
     
