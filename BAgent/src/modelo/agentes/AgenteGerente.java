@@ -32,23 +32,21 @@ public class AgenteGerente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Quero uma senha para atendimento.")) {
-                        System.out.println("Gerente recebe: Quero uma senha para atendimento.");
+                        System.out.println("Gerente recebe: " + content);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
-                        System.out.println("Gerente: Sua senha é Cliente-" + ultimaSenha);
                         ultimaSenha++;
 
                         if (JanelaSimulacao.listaAtendentesEmAtendimento.size() == 0) {
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                            System.out.println("Gerente: Não tem ninguem atendendo ainda. Vá atender por favor");
+                            System.out.println("Gerente: Não tem ninguem atendendo ainda.");
                         } else {
                             int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
 
                             if (coeficiente >= 6 && JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                                System.out.println("Gerente: " + JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName() + " Vá atender por favor");
                             } else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
-                            }   System.out.println("Gerente: " + JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName() + " Feche o caixa e aguarde ser chamado novamente.");
+                            }
                         }
                     }
                 }
@@ -63,5 +61,6 @@ public class AgenteGerente extends Agent {
         msg.setOntology("a");
         msg.setContent(mensagem);
         myAgent.send(msg);
+        System.out.println(getLocalName() + " para " + destino + ": " + msg.getContent());
     }
 }
