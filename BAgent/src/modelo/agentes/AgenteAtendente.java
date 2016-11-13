@@ -47,7 +47,7 @@ public class AgenteAtendente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
-                        
+                        System.out.println(getLocalName() + " Recebe: Vá atender por favor!");
                         JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
                         imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
@@ -55,7 +55,7 @@ public class AgenteAtendente extends Agent {
                         proximoCliente(myAgent);
                         
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
-                        
+                        System.out.println(getLocalName() + " Recebe: Tenho boletos para pagar.");
                         try {
                             Thread.sleep(random.nextInt(3) * 1000);
                         } catch (InterruptedException ex) {
@@ -63,10 +63,11 @@ public class AgenteAtendente extends Agent {
                         }
                         
                         enviaMensagem(myAgent, cliente, "Boleto pago com sucesso, deseja pagar outro boleto?");
-                        
+                        System.out.println(getLocalName() + " para "+ cliente + ": Boleto pago com sucesso, deseja pagar outro boleto?");
                     } else if (content.equalsIgnoreCase("Não tenho mais boletos para pagar.")) {
-                        
+                        System.out.println(getLocalName() + " recebe: Não tenho mais boletos para pagar.");
                         enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
+                        System.out.println(getLocalName() + " envia para " + cliente + ": Obrigado, volte sempre!");
                         emAtendimento = false;
                         
                         try {
@@ -76,7 +77,7 @@ public class AgenteAtendente extends Agent {
                         }
                         
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
-                        
+                        System.out.println(getLocalName() + " recebe: Feche o caixa e aguarde ser chamado novamente.");
                         imagemIcone.setVisible(false);
                         imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
@@ -104,6 +105,7 @@ public class AgenteAtendente extends Agent {
     public void proximoCliente(Agent myAgent) {
         cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
         enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
+        System.out.println(getLocalName() + ": Proximo! senha " + cliente);
         emAtendimento = true;
     }
     

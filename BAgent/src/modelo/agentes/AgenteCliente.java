@@ -38,7 +38,8 @@ public class AgenteCliente extends Agent {
                 msg.addReceiver(new AID("Gerente", AID.ISLOCALNAME));
                 msg.setLanguage("Português");
                 msg.setOntology("a"); // verificar se é necessário
-                msg.setContent("Quero uma senha para atendimento");
+                msg.setContent("Quero uma senha para atendimento.");
+                System.out.println(getLocalName() + ": Quero uma senha para atendimento.");
                 myAgent.send(msg);
             }
         });
@@ -52,8 +53,9 @@ public class AgenteCliente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
                         imagemIcone.setVisible(true);
-
+                        System.out.println(getLocalName() + " recebe: Sua senha é " + getLocalName());
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
+                        System.out.println(getLocalName() + " recebe: Próximo! Senha " + getLocalName());
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
                         JanelaSimulacao.listaClientesEmEspera.remove(aThis);
@@ -65,16 +67,19 @@ public class AgenteCliente extends Agent {
 
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
+                        System.out.println(getLocalName() + ": Tenho boletos para pagar.");
 
                     } else if (content.equalsIgnoreCase("Boleto pago com sucesso, deseja pagar outro boleto?")) {
-
+                        System.out.println(getLocalName() + " Recebe: Boleto pago com sucesso, deseja pagar outro boleto?");
                         qtdBoletos--;
                         if (qtdBoletos > 0) {
                             enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sim, desejo pagar mais um boleto.");
+                            System.out.println(getLocalName() + ": Sim, desejo pagar mais um boleto.");
                         }
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Não tenho mais boletos para pagar.");
-
+                        System.out.println(getLocalName() + ": Não tenho mais boletos para pagar.");
                     } else if (content.equalsIgnoreCase("Obrigado, volte sempre!")) {
+                        System.out.println(getLocalName() + " Recebe: Obrigado, volte sempre!");
                         JanelaSimulacao.listaClientesEmAtendimento.remove(aThis);
                         imagemIcone.setVisible(false);
                         block();
