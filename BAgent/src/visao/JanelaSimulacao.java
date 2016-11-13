@@ -26,6 +26,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
 
     public JanelaSimulacao() {
         initComponents();
+        this.setSize(830, 650);
+        this.PainelAtendentes.setOpaque(false);
+        this.PainelAtendimento.setOpaque(false);
+        this.PainelClientes.setOpaque(false);
+        this.PainelEscritorio.setOpaque(false);
         this.listaClientesEmEspera = new ArrayList();
         this.listaClientesEmAtendimento = new ArrayList();
         this.listaAtendentesDisponiveis = new ArrayList();
@@ -98,372 +103,107 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio1 = new javax.swing.JLabel();
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
+        labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        Gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/gerenteIcon.png"))); // NOI18N
         Gerente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(Gerente);
+        Gerente.setBounds(520, 80, 60, 70);
 
-        PainelClientes.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes"));
+        PainelClientes.setLayout(null);
 
         Cliente1.setName(""); // NOI18N
+        PainelClientes.add(Cliente1);
+        Cliente1.setBounds(10, 10, 70, 70);
+        PainelClientes.add(Cliente2);
+        Cliente2.setBounds(90, 10, 70, 70);
+        PainelClientes.add(Cliente3);
+        Cliente3.setBounds(170, 10, 70, 70);
+        PainelClientes.add(Cliente4);
+        Cliente4.setBounds(250, 10, 70, 70);
+        PainelClientes.add(Cliente5);
+        Cliente5.setBounds(330, 10, 70, 70);
+        PainelClientes.add(Cliente6);
+        Cliente6.setBounds(400, 10, 70, 70);
+        PainelClientes.add(Cliente7);
+        Cliente7.setBounds(10, 90, 70, 70);
+        PainelClientes.add(Cliente8);
+        Cliente8.setBounds(90, 90, 70, 70);
+        PainelClientes.add(Cliente9);
+        Cliente9.setBounds(400, 90, 70, 70);
+        PainelClientes.add(Cliente10);
+        Cliente10.setBounds(170, 90, 70, 70);
+        PainelClientes.add(Cliente11);
+        Cliente11.setBounds(250, 90, 70, 70);
+        PainelClientes.add(Cliente12);
+        Cliente12.setBounds(330, 90, 70, 70);
+        PainelClientes.add(Cliente13);
+        Cliente13.setBounds(10, 170, 70, 70);
+        PainelClientes.add(Cliente14);
+        Cliente14.setBounds(90, 170, 70, 70);
+        PainelClientes.add(Cliente15);
+        Cliente15.setBounds(170, 170, 70, 70);
+        PainelClientes.add(Cliente16);
+        Cliente16.setBounds(250, 170, 70, 70);
+        PainelClientes.add(Cliente17);
+        Cliente17.setBounds(330, 170, 70, 70);
+        PainelClientes.add(Cliente18);
+        Cliente18.setBounds(400, 170, 70, 70);
 
-        javax.swing.GroupLayout PainelClientesLayout = new javax.swing.GroupLayout(PainelClientes);
-        PainelClientes.setLayout(PainelClientesLayout);
-        PainelClientesLayout.setHorizontalGroup(
-            PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente1)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente2)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente3)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente4)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente5)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente6)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente7)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente8)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente9)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente10)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente11)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente12)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente13)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente14)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente15)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente16)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente17)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Cliente18)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-        );
-        PainelClientesLayout.setVerticalGroup(
-            PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente1)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente2)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente3)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente4)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente5)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente6)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente7)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente8)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente9)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente10)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente11)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente12)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente13)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente14)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente15)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente16)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente17)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-            .addGroup(PainelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelClientesLayout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(Cliente18)
-                    .addGap(0, 75, Short.MAX_VALUE)))
-        );
+        getContentPane().add(PainelClientes);
+        PainelClientes.setBounds(20, 320, 480, 270);
 
-        PainelAtendentes.setBorder(javax.swing.BorderFactory.createTitledBorder("Atendentes"));
+        PainelAtendentes.setLayout(null);
 
-        javax.swing.GroupLayout PainelAtendentesLayout = new javax.swing.GroupLayout(PainelAtendentes);
-        PainelAtendentes.setLayout(PainelAtendentesLayout);
-        PainelAtendentesLayout.setHorizontalGroup(
-            PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAtendentesLayout.createSequentialGroup()
-                    .addContainerGap(287, Short.MAX_VALUE)
-                    .addComponent(Atendente1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(270, Short.MAX_VALUE)))
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendentesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Atendente2)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendentesLayout.createSequentialGroup()
-                    .addGap(0, 287, Short.MAX_VALUE)
-                    .addComponent(Atendente3)
-                    .addGap(0, 287, Short.MAX_VALUE)))
-        );
-        PainelAtendentesLayout.setVerticalGroup(
-            PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAtendentesLayout.createSequentialGroup()
-                    .addContainerGap(50, Short.MAX_VALUE)
-                    .addComponent(Atendente1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(41, Short.MAX_VALUE)))
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendentesLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Atendente2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(PainelAtendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendentesLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Atendente3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        Atendente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon.png"))); // NOI18N
+        PainelAtendentes.add(Atendente1);
+        Atendente1.setBounds(6, 6, 72, 76);
 
-        PainelAtendimento.setBorder(javax.swing.BorderFactory.createTitledBorder("Atendimento"));
+        Atendente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon.png"))); // NOI18N
+        PainelAtendentes.add(Atendente2);
+        Atendente2.setBounds(145, 6, 72, 76);
 
-        javax.swing.GroupLayout PainelAtendimentoLayout = new javax.swing.GroupLayout(PainelAtendimento);
-        PainelAtendimento.setLayout(PainelAtendimentoLayout);
-        PainelAtendimentoLayout.setHorizontalGroup(
-            PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendimentoLayout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(Cadeira1)
-                    .addContainerGap(524, Short.MAX_VALUE)))
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendimentoLayout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(Cadeira2)
-                    .addContainerGap(514, Short.MAX_VALUE)))
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendimentoLayout.createSequentialGroup()
-                    .addGap(70, 70, 70)
-                    .addComponent(Cadeira3)
-                    .addContainerGap(504, Short.MAX_VALUE)))
-        );
-        PainelAtendimentoLayout.setVerticalGroup(
-            PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelAtendimentoLayout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(Cadeira1)
-                    .addContainerGap(50, Short.MAX_VALUE)))
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAtendimentoLayout.createSequentialGroup()
-                    .addContainerGap(60, Short.MAX_VALUE)
-                    .addComponent(Cadeira2)
-                    .addGap(40, 40, 40)))
-            .addGroup(PainelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAtendimentoLayout.createSequentialGroup()
-                    .addContainerGap(70, Short.MAX_VALUE)
-                    .addComponent(Cadeira3)
-                    .addGap(30, 30, 30)))
-        );
+        Atendente3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon.png"))); // NOI18N
+        PainelAtendentes.add(Atendente3);
+        Atendente3.setBounds(288, 6, 76, 78);
 
-        PainelEscritorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Escritório"));
+        getContentPane().add(PainelAtendentes);
+        PainelAtendentes.setBounds(40, 30, 370, 90);
 
-        javax.swing.GroupLayout PainelEscritorioLayout = new javax.swing.GroupLayout(PainelEscritorio);
-        PainelEscritorio.setLayout(PainelEscritorioLayout);
-        PainelEscritorioLayout.setHorizontalGroup(
-            PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelEscritorioLayout.createSequentialGroup()
-                    .addGap(287, 287, 287)
-                    .addComponent(Escritorio1)
-                    .addContainerGap(287, Short.MAX_VALUE)))
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEscritorioLayout.createSequentialGroup()
-                    .addContainerGap(297, Short.MAX_VALUE)
-                    .addComponent(Escritorio2)
-                    .addGap(277, 277, 277)))
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEscritorioLayout.createSequentialGroup()
-                    .addContainerGap(307, Short.MAX_VALUE)
-                    .addComponent(Escritorio3)
-                    .addGap(267, 267, 267)))
-        );
-        PainelEscritorioLayout.setVerticalGroup(
-            PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PainelEscritorioLayout.createSequentialGroup()
-                    .addGap(57, 57, 57)
-                    .addComponent(Escritorio1)
-                    .addContainerGap(58, Short.MAX_VALUE)))
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEscritorioLayout.createSequentialGroup()
-                    .addContainerGap(67, Short.MAX_VALUE)
-                    .addComponent(Escritorio2)
-                    .addGap(48, 48, 48)))
-            .addGroup(PainelEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEscritorioLayout.createSequentialGroup()
-                    .addContainerGap(77, Short.MAX_VALUE)
-                    .addComponent(Escritorio3)
-                    .addGap(38, 38, 38)))
-        );
+        PainelAtendimento.setLayout(null);
+        PainelAtendimento.add(Cadeira1);
+        Cadeira1.setBounds(6, 0, 0, 0);
+        PainelAtendimento.add(Cadeira2);
+        Cadeira2.setBounds(152, 0, 0, 0);
+        PainelAtendimento.add(Cadeira3);
+        Cadeira3.setBounds(294, 0, 0, 0);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(PainelClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(PainelEscritorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PainelAtendentes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PainelAtendimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(608, Short.MAX_VALUE)
-                    .addComponent(Gerente)
-                    .addGap(135, 135, 135)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PainelEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(PainelAtendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(562, Short.MAX_VALUE)
-                    .addComponent(Gerente)
-                    .addGap(37, 37, 37)))
-        );
+        getContentPane().add(PainelAtendimento);
+        PainelAtendimento.setBounds(40, 170, 380, 80);
+
+        PainelEscritorio.setLayout(null);
+
+        Escritorio1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon_downesquerda.png"))); // NOI18N
+        PainelEscritorio.add(Escritorio1);
+        Escritorio1.setBounds(102, 0, 72, 76);
+
+        Escritorio2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon_topesquerda.png"))); // NOI18N
+        PainelEscritorio.add(Escritorio2);
+        Escritorio2.setBounds(102, 108, 72, 76);
+
+        Escritorio3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/atendenteIcon_topdireita.png"))); // NOI18N
+        PainelEscritorio.add(Escritorio3);
+        Escritorio3.setBounds(6, 108, 72, 76);
+
+        getContentPane().add(PainelEscritorio);
+        PainelEscritorio.setBounds(620, 10, 180, 190);
+
+        labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/bancoModelo.png"))); // NOI18N
+        getContentPane().add(labelBackground);
+        labelBackground.setBounds(6, 6, 800, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -520,5 +260,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     private javax.swing.JPanel PainelAtendimento;
     private javax.swing.JPanel PainelClientes;
     private javax.swing.JPanel PainelEscritorio;
+    private javax.swing.JLabel labelBackground;
     // End of variables declaration//GEN-END:variables
 }
