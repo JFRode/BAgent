@@ -22,6 +22,7 @@ public class AgenteAtendente extends Agent {
     private AgenteAtendente aThis;
     private JLabel imagemIcone;
     private JLabel imagemIconeCadeiraDeAtendimento;
+    private JLabel imagemIconeEscritorio;
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
@@ -34,6 +35,9 @@ public class AgenteAtendente extends Agent {
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
+        imagemIconeCadeiraDeAtendimento = (JLabel) getArguments()[1];
+        imagemIconeEscritorio = (JLabel) getArguments()[2];
+        
         addBehaviour(new CyclicBehaviour(this) {
             
             @Override
@@ -44,6 +48,7 @@ public class AgenteAtendente extends Agent {
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
                         
                         JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
+                        imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
                         
                         proximoCliente(myAgent);
@@ -69,14 +74,17 @@ public class AgenteAtendente extends Agent {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         
-                        proximoCliente(myAgent);
-                        
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
                         
                         imagemIcone.setVisible(false);
+                        imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
-                        imagemIcone.setVisible(true);
+                        
+                    } else {
+                        
+                        proximoCliente(myAgent);
+                        
                     }
                 }
             }
