@@ -46,7 +46,9 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         }
         cont = 0;
         for (Component component : PainelAtendentes.getComponents()) {
-            listaIconesAtendentes.add((JLabel) component);
+            JLabel icone = (JLabel) component;
+            icone.setVisible(false);
+            listaIconesAtendentes.add(icone);
             component.setName("Atendente" + (cont++));
         }
         cont = 0;
