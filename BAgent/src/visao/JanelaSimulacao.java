@@ -135,13 +135,13 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         PainelClientes.add(Cliente8);
         Cliente8.setBounds(90, 90, 70, 70);
         PainelClientes.add(Cliente9);
-        Cliente9.setBounds(400, 90, 70, 70);
+        Cliente9.setBounds(170, 90, 70, 70);
         PainelClientes.add(Cliente10);
-        Cliente10.setBounds(170, 90, 70, 70);
+        Cliente10.setBounds(250, 90, 70, 70);
         PainelClientes.add(Cliente11);
-        Cliente11.setBounds(250, 90, 70, 70);
+        Cliente11.setBounds(330, 90, 70, 70);
         PainelClientes.add(Cliente12);
-        Cliente12.setBounds(330, 90, 70, 70);
+        Cliente12.setBounds(400, 90, 70, 70);
         PainelClientes.add(Cliente13);
         Cliente13.setBounds(10, 170, 70, 70);
         PainelClientes.add(Cliente14);
@@ -177,11 +177,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
 
         PainelAtendimento.setLayout(null);
         PainelAtendimento.add(Cadeira1);
-        Cadeira1.setBounds(6, 0, 0, 0);
+        Cadeira1.setBounds(6, 0, 72, 76);
         PainelAtendimento.add(Cadeira2);
-        Cadeira2.setBounds(152, 0, 0, 0);
+        Cadeira2.setBounds(152, 0, 72, 76);
         PainelAtendimento.add(Cadeira3);
-        Cadeira3.setBounds(294, 0, 0, 0);
+        Cadeira3.setBounds(294, 0, 72, 76);
 
         getContentPane().add(PainelAtendimento);
         PainelAtendimento.setBounds(40, 170, 380, 80);

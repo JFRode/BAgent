@@ -6,6 +6,8 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import visao.JanelaSimulacao;
@@ -57,9 +59,10 @@ public class AgenteCliente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
                         imagemIcone.setVisible(true);
-                        System.out.println(getLocalName() + " recebe: " + content);
+                        //System.out.println(getLocalName() + " recebe: " + content);
+                        aguardar(2000);
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
-                        System.out.println(getLocalName() + " recebe: " + content);
+                        //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
                         JanelaSimulacao.listaClientesEmEspera.remove(aThis);
@@ -71,10 +74,10 @@ public class AgenteCliente extends Agent {
                         imagemIcone.setIcon(icone);
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
-                        System.out.println(getLocalName() + ": Tenho " + qtdBoletos);
+                        System.out.println("\n" + getLocalName() + ": Tenho " + qtdBoletos + "\n\n");
 
                     } else if (content.equalsIgnoreCase("Boleto pago com sucesso, deseja pagar outro boleto?")) {
-                        System.out.println(getLocalName() + " Recebe: " + content);
+                        //System.out.println(getLocalName() + " Recebe: " + content);
                         qtdBoletos--;
                         if (qtdBoletos > 0) {
                             enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sim, desejo pagar mais um boleto.");
@@ -82,7 +85,7 @@ public class AgenteCliente extends Agent {
                             enviaMensagem(myAgent, msg.getSender().getLocalName(), "Não tenho mais boletos para pagar.");
                         }
                     } else if (content.equalsIgnoreCase("Obrigado, volte sempre!")) {
-                        System.out.println(getLocalName() + " Recebe: " + content);
+                        //System.out.println(getLocalName() + " Recebe: " + content);
                         JanelaSimulacao.listaClientesEmAtendimento.remove(aThis);
                         imagemIcone.setVisible(false);
                         block();
@@ -100,5 +103,13 @@ public class AgenteCliente extends Agent {
         msg.setContent(mensagem);
         myAgent.send(msg);
         System.out.println(getLocalName() + " para " + destino + ": " + msg.getContent());
+    }
+
+    public void aguardar(int tempo) {
+        try {
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

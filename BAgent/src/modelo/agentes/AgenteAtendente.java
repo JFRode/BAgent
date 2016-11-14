@@ -47,7 +47,7 @@ public class AgenteAtendente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
-                        System.out.println(getLocalName() + " Recebe: " + content);
+                        //System.out.println(getLocalName() + " Recebe: " + content);
                         JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
@@ -56,27 +56,27 @@ public class AgenteAtendente extends Agent {
                         proximoCliente(myAgent);
                         
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
-                        System.out.println(getLocalName() + " Recebe: " + content);
+                        //System.out.println(getLocalName() + " Recebe: " + content);
                         try {
-                            Thread.sleep(random.nextInt(3) * 1000);
+                            Thread.sleep(random.nextInt(5) * 1000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         
                         enviaMensagem(myAgent, cliente, "Boleto pago com sucesso, deseja pagar outro boleto?");
                     } else if (content.equalsIgnoreCase("Não tenho mais boletos para pagar.")) {
-                        System.out.println(getLocalName() + " recebe: " + content);
+                        //System.out.println(getLocalName() + " recebe: " + content);
                         enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
                         emAtendimento = false;
                         
                         try {
-                            Thread.sleep(2000);
+                            Thread.sleep(2500);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
-                        System.out.println(getLocalName() + " recebe: " + content);
+                        //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);

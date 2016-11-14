@@ -70,13 +70,14 @@ public class AgentFactory {
                     try {
                         int numCliente = rand.nextInt(2) + 1;
                         for (int i = 1; i <= numCliente; i++) {
-                            JLabel label = JanelaSimulacao.listaIconesClientes.get(rand.nextInt(JanelaSimulacao.listaIconesClientes.size()));
+                            int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
+                            JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
                             JanelaSimulacao.listaIconesClientes.remove(label);
                             agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                             agentController.start();
                             contCliente++;
                         }
-                        sleep(15000000);
+                        sleep(15000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (StaleProxyException ex) {

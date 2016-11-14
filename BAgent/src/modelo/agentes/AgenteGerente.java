@@ -32,13 +32,13 @@ public class AgenteGerente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Quero uma senha para atendimento.")) {
-                        System.out.println("Gerente recebe: " + content);
+                        //System.out.println("Gerente recebe: " + content);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
                         ultimaSenha++;
 
                         if (JanelaSimulacao.listaAtendentesEmAtendimento.size() == 0) {
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                           
+
                         } else {
                             int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
 
