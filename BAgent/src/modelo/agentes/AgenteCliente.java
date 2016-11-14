@@ -6,6 +6,7 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import java.util.Random;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import visao.JanelaSimulacao;
 
@@ -19,17 +20,20 @@ public class AgenteCliente extends Agent {
     private int qtdBoletos;
     private AgenteCliente aThis;
     private JLabel imagemIcone;
+    private Icon icone;
 
     public AgenteCliente() {
         Random rand = new Random();
         this.qtdBoletos = rand.nextInt(5) + 1;
         this.aThis = this;
         JanelaSimulacao.listaClientesEmEspera.add(this);
+        icone = new javax.swing.ImageIcon(getClass().getResource("/rsc/clientes/clienteIcon_" + (rand.nextInt(10)+1) +".png"));
     }
 
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
+        imagemIcone.setIcon(icone);
         addBehaviour(new OneShotBehaviour() {
 
             @Override
@@ -64,7 +68,7 @@ public class AgenteCliente extends Agent {
                         //  Identifica o balcao de atendimento e se dirige a ele
                         String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
                         imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento.get(Integer.parseInt(balcaoDeAtendimento[1])).getImagemIconeCadeiraDeAtendimento();
-
+                        imagemIcone.setIcon(icone);
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");
                         System.out.println(getLocalName() + ": Tenho " + qtdBoletos);
