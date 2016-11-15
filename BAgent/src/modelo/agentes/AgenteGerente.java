@@ -1,62 +1,94 @@
 package modelo.agentes;
 
 import jade.core.AID;
-import visao.JanelaSimulacao;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior
- *         Antonio Roque Falcão Junior
- *         Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
-public class AgenteGerente extends Agent{
+public class AgenteGerente extends Agent {
 
     private int ultimaSenha;
-    
+    private JLabel imagemIcone;
+
     public AgenteGerente() {
-        this.getAID().setLocalName("Gerente");
         this.ultimaSenha = 0;
     }
-    
+
     @Override
-    protected void setup(){
-        
+    protected void setup() {
+        imagemIcone = (JLabel) getArguments()[0];
         addBehaviour(new CyclicBehaviour(this) {
-            
+
             @Override
             public void action() {
                 ACLMessage msg = myAgent.receive();
                 if (msg != null) {
                     String content = msg.getContent();
-                    if (content.equalsIgnoreCase("Quero uma senha para atendimento")) {
-                        msg.getSender().setLocalName(String.valueOf(ultimaSenha));  // Define a senha para o cliente
-                        // Informa a senha
-                        ACLMessage msgParaCliente = new ACLMessage(ACLMessage.INFORM);
-                        msgParaCliente.addReceiver(new AID(String.valueOf(ultimaSenha), AID.ISLOCALNAME));
-                        msgParaCliente.setLanguage("Português");
-                        msgParaCliente.setOntology("a"); // verificar se é necessário
-                        msgParaCliente.setContent("Sua senha é " + ultimaSenha);
-                        myAgent.send(msgParaCliente);
+                    if (content.equalsIgnoreCase("Quero uma senha para atendimento.")) {
+                        //System.out.println("Gerente recebe: " + content);
+                        enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
                         ultimaSenha++;
-                        // Verifica se e necessario mais atendentes
-                        if ((JanelaSimulacao.listaClientes.size() == 7 || 
-                                JanelaSimulacao.listaClientes.size() == 13 || 
-                                JanelaSimulacao.listaClientes.size() == 18) &&
-                                JanelaSimulacao.listaAtendentes.size() > 0) {
-                            // Envia mensagem para o atendente primeiro da lista ir atender
-                            msgParaCliente = new ACLMessage(ACLMessage.INFORM);
-                            msgParaCliente.addReceiver(new AID(JanelaSimulacao.listaAtendentes.get(0).getAID().getLocalName(), AID.ISLOCALNAME));
-                            msgParaCliente.setLanguage("Português");
-                            msgParaCliente.setOntology("a"); // verificar se é necessário
-                            msgParaCliente.setContent("Vá atender por favor!");
-                            myAgent.send(msgParaCliente);
+
+                        if (contarAtendentes() == 0) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
+
+                        } else {
+                            /*int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
+
+                            if (coeficiente >= 6 && JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
+                            } else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
+                            }*/
+
+                            if (JanelaSimulacao.listaClientesEmEspera.size() > 6 && contarAtendentes() == 1) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
+                            } else if (JanelaSimulacao.listaClientesEmEspera.size() > 12 && contarAtendentes() == 2) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
+                            }
+                            if (JanelaSimulacao.listaClientesEmEspera.size() < 7 && contarAtendentes() > 1 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
+                            } else if (JanelaSimulacao.listaClientesEmEspera.size() < 13 && contarAtendentes() > 2 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
+                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
+                            }
                         }
                     }
                 }
             }
         });
+    }
+
+    public void enviaMensagem(Agent myAgent, String destino, String mensagem) {
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(new AID(destino, AID.ISLOCALNAME));
+        msg.setLanguage("Português");
+        msg.setOntology("a");
+        msg.setContent(mensagem);
+        myAgent.send(msg);
+        System.out.println(getLocalName() + " para " + destino + ": " + msg.getContent());
+    }
+
+    public int contarAtendentes() {
+        int cont = 0;
+        for (AgenteAtendente agenteAtendente : JanelaSimulacao.listaAtendentesEmAtendimento) {
+            if (agenteAtendente != null) {
+                cont++;
+            }
+        }
+        return cont;
     }
 }
