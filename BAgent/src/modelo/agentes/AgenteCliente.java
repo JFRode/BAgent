@@ -66,13 +66,18 @@ public class AgenteCliente extends Agent {
                         //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
-                        JanelaSimulacao.listaClientesEmEspera.remove(aThis);
+                        //JanelaSimulacao.listaClientesEmEspera.remove(aThis);
                         JanelaSimulacao.listaClientesEmAtendimento.add(aThis);
 
                         //  Identifica o balcao de atendimento e se dirige a ele
                         String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
-                        System.out.println("OLHA  AMERDA AQUI " + Integer.parseInt(balcaoDeAtendimento[1]) + balcaoDeAtendimento[1]);
-                        imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento.get(Integer.parseInt(balcaoDeAtendimento[1])).getImagemIconeCadeiraDeAtendimento();
+                        System.out.println("OLHA  AMERDA AQUI " + Integer.parseInt(balcaoDeAtendimento[1]));
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgenteCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento[Integer.parseInt(balcaoDeAtendimento[1])].getImagemIconeCadeiraDeAtendimento();
                         imagemIcone.setIcon(icone);
                         imagemIcone.setVisible(true);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Tenho boletos para pagar.");

@@ -38,7 +38,7 @@ public class AgenteAtendente extends Agent {
         imagemIconeEscritorio = (JLabel) getArguments()[2];
 
         addBehaviour(new CyclicBehaviour(this) {
-
+            String[] divisor = getAID().getLocalName().split("-");
             @Override
             public void action() {
                 ACLMessage msg = myAgent.receive();
@@ -46,7 +46,8 @@ public class AgenteAtendente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
                         //System.out.println(getLocalName() + " Recebe: " + content);
-                        JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
+                        //JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
+                        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = aThis;
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
@@ -82,9 +83,8 @@ public class AgenteAtendente extends Agent {
                         //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         imagemIconeEscritorio.setVisible(true);
-                        JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
+                        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = null;
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
-
                     }
                 }
             }
@@ -103,7 +103,8 @@ public class AgenteAtendente extends Agent {
 
     public void proximoCliente(Agent myAgent) {
         if (!JanelaSimulacao.listaClientesEmEspera.isEmpty()) {
-            cliente = JanelaSimulacao.listaClientesEmEspera.get(JanelaSimulacao.listaAtendentesEmAtendimento.indexOf(this)).getAID().getLocalName();
+            cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
+            JanelaSimulacao.listaClientesEmEspera.remove(0);
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
             emAtendimento = true;
         }

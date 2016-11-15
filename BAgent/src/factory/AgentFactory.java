@@ -69,16 +69,16 @@ public class AgentFactory {
                 while (true) {
                     if (JanelaSimulacao.listaClientesEmEspera.size() < 18) {
                         try {
-                            int numCliente = rand.nextInt(2) + 1;
-                            for (int i = 1; i <= numCliente; i++) {
+                            //for (int i = 1; i <= numCliente; i++) {
                                 int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
                                 JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
                                 JanelaSimulacao.listaIconesClientes.remove(label);
                                 agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                                 agentController.start();
                                 contCliente++;
-                            }
-                            sleep(5000);
+                            //}
+                            int sleep = rand.nextInt(5) + 1;
+                            sleep(sleep * 1000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (StaleProxyException ex) {
