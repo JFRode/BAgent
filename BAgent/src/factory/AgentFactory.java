@@ -67,21 +67,23 @@ public class AgentFactory {
                 int contCliente = 0;
                 Random rand = new Random();
                 while (true) {
-                    try {
-                        int numCliente = rand.nextInt(2) + 1;
-                        for (int i = 1; i <= numCliente; i++) {
-                            int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
-                            JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
-                            JanelaSimulacao.listaIconesClientes.remove(label);
-                            agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
-                            agentController.start();
-                            contCliente++;
+                    if (JanelaSimulacao.listaClientesEmEspera.size() < 18) {
+                        try {
+                            int numCliente = rand.nextInt(2) + 1;
+                            for (int i = 1; i <= numCliente; i++) {
+                                int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
+                                JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
+                                JanelaSimulacao.listaIconesClientes.remove(label);
+                                agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
+                                agentController.start();
+                                contCliente++;
+                            }
+                            sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (StaleProxyException ex) {
+                            Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        sleep(15000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (StaleProxyException ex) {
-                        Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
