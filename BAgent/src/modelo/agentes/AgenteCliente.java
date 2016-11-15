@@ -14,9 +14,8 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author  Ailton Cardoso Junior
- *          Antonio Roque Falcão Junior 
- *          Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
 public class AgenteCliente extends Agent {
 
@@ -30,7 +29,7 @@ public class AgenteCliente extends Agent {
         this.qtdBoletos = rand.nextInt(5) + 1;
         this.aThis = this;
         JanelaSimulacao.listaClientesEmEspera.add(this);
-        icone = new javax.swing.ImageIcon(getClass().getResource("/rsc/clientes/clienteIcon_" + (rand.nextInt(10)+1) +".png"));
+        icone = new javax.swing.ImageIcon(getClass().getResource("/rsc/clientes/clienteIcon_" + (rand.nextInt(10) + 1) + ".png"));
     }
 
     @Override
@@ -71,7 +70,6 @@ public class AgenteCliente extends Agent {
 
                         //  Identifica o balcao de atendimento e se dirige a ele
                         String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
-                        System.out.println("OLHA  AMERDA AQUI " + Integer.parseInt(balcaoDeAtendimento[1]));
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException ex) {

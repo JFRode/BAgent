@@ -26,7 +26,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static AgenteAtendente[] listaAtendentesEmAtendimento;
     private AgentFactory agentFactory;
 
-    public JanelaSimulacao() {
+    public JanelaSimulacao() throws InterruptedException {
         initComponents();
         this.setSize(830, 650);
         this.PainelAtendentes.setOpaque(false);
@@ -230,7 +230,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JanelaSimulacao().setVisible(true);
+                try {
+                    new JanelaSimulacao().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(JanelaSimulacao.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -4,6 +4,8 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import visao.JanelaSimulacao;
 
@@ -37,6 +39,11 @@ public class AgenteGerente extends Agent {
                         ultimaSenha++;
 
                         if (contarAtendentes() == 0) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
 
                         } else {
@@ -47,15 +54,15 @@ public class AgenteGerente extends Agent {
                             } else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
                             }*/
-                            
-                            if(JanelaSimulacao.listaClientesEmEspera.size() > 6 && contarAtendentes() == 1) {
+
+                            if (JanelaSimulacao.listaClientesEmEspera.size() > 6 && contarAtendentes() == 1) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                            }else if(JanelaSimulacao.listaClientesEmEspera.size() > 12 && contarAtendentes() == 2){
+                            } else if (JanelaSimulacao.listaClientesEmEspera.size() > 12 && contarAtendentes() == 2) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
                             }
-                            if(JanelaSimulacao.listaClientesEmEspera.size() < 7 && contarAtendentes() > 1){
+                            if (JanelaSimulacao.listaClientesEmEspera.size() < 7 && contarAtendentes() > 1 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
-                            }else if(JanelaSimulacao.listaClientesEmEspera.size() < 13 && contarAtendentes() > 2){
+                            } else if (JanelaSimulacao.listaClientesEmEspera.size() < 13 && contarAtendentes() > 2 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
                             }
                         }
@@ -74,10 +81,11 @@ public class AgenteGerente extends Agent {
         myAgent.send(msg);
         System.out.println(getLocalName() + " para " + destino + ": " + msg.getContent());
     }
-    public int contarAtendentes(){
+
+    public int contarAtendentes() {
         int cont = 0;
         for (AgenteAtendente agenteAtendente : JanelaSimulacao.listaAtendentesEmAtendimento) {
-            if(agenteAtendente != null){
+            if (agenteAtendente != null) {
                 cont++;
             }
         }

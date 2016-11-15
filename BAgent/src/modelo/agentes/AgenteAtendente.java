@@ -39,6 +39,7 @@ public class AgenteAtendente extends Agent {
 
         addBehaviour(new CyclicBehaviour(this) {
             String[] divisor = getAID().getLocalName().split("-");
+
             @Override
             public void action() {
                 ACLMessage msg = myAgent.receive();
@@ -59,6 +60,14 @@ public class AgenteAtendente extends Agent {
                         }
                         proximoCliente(myAgent);
 
+                    } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
+                        //System.out.println(getLocalName() + " recebe: " + content);
+                        imagemIcone.setVisible(false);
+                        imagemIconeEscritorio.setVisible(true);
+                        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = null;
+                        JanelaSimulacao.listaAtendentesControleDeIntervalo.remove(aThis);
+                        JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
+                        
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
                         //System.out.println(getLocalName() + " Recebe: " + content);
                         try {
@@ -79,14 +88,6 @@ public class AgenteAtendente extends Agent {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         proximoCliente(myAgent);
-
-                    } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
-                        //System.out.println(getLocalName() + " recebe: " + content);
-                        imagemIcone.setVisible(false);
-                        imagemIconeEscritorio.setVisible(true);
-                        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = null;
-                        JanelaSimulacao.listaAtendentesControleDeIntervalo.remove(aThis);
-                        JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
                     }
                 }
             }
