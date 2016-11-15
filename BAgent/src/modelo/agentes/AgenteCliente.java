@@ -14,8 +14,9 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
- * Gonçalves
+ * @author  Ailton Cardoso Junior
+ *          Antonio Roque Falcão Junior 
+ *          Joao Felipe Gonçalves
  */
 public class AgenteCliente extends Agent {
 
@@ -70,6 +71,7 @@ public class AgenteCliente extends Agent {
 
                         //  Identifica o balcao de atendimento e se dirige a ele
                         String[] balcaoDeAtendimento = msg.getSender().getLocalName().split("-");
+                        System.out.println("OLHA  AMERDA AQUI " + Integer.parseInt(balcaoDeAtendimento[1]) + balcaoDeAtendimento[1]);
                         imagemIcone = JanelaSimulacao.listaAtendentesEmAtendimento.get(Integer.parseInt(balcaoDeAtendimento[1])).getImagemIconeCadeiraDeAtendimento();
                         imagemIcone.setIcon(icone);
                         imagemIcone.setVisible(true);

@@ -78,7 +78,7 @@ public class AgentFactory {
                                 agentController.start();
                                 contCliente++;
                             }
-                            sleep(1000);
+                            sleep(5000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (StaleProxyException ex) {

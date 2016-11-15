@@ -108,6 +108,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
         getContentPane().setLayout(null);
 
         Gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/gerenteIcon.png"))); // NOI18N

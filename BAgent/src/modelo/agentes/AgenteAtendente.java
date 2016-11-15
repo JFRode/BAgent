@@ -74,6 +74,7 @@ public class AgenteAtendente extends Agent {
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        proximoCliente(myAgent);
                         
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
                         //System.out.println(getLocalName() + " recebe: " + content);
@@ -81,10 +82,6 @@ public class AgenteAtendente extends Agent {
                         imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
-                        
-                    } else {
-                        
-                        proximoCliente(myAgent);
                         
                     }
                 }
@@ -103,9 +100,11 @@ public class AgenteAtendente extends Agent {
     }
     
     public void proximoCliente(Agent myAgent) {
-        cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
-        enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
-        emAtendimento = true;
+        if (!JanelaSimulacao.listaClientesEmEspera.isEmpty()) {
+            cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
+            enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
+            emAtendimento = true;
+        }
     }
     
     public boolean emAtendimento() {
