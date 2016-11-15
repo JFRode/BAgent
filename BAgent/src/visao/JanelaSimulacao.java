@@ -21,10 +21,12 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static List<AgenteCliente> listaClientesEmEspera;
     public static List<AgenteCliente> listaClientesEmAtendimento;
     public static List<AgenteAtendente> listaAtendentesDisponiveis;
-    public static List<AgenteAtendente> listaAtendentesEmAtendimento;
+    public static List<AgenteAtendente> listaAtendentesControleDeIntervalo;
+    //public static List<AgenteAtendente> listaAtendentesEmAtendimento;
+    public static AgenteAtendente[] listaAtendentesEmAtendimento;
     private AgentFactory agentFactory;
 
-    public JanelaSimulacao() {
+    public JanelaSimulacao() throws InterruptedException {
         initComponents();
         this.setSize(830, 650);
         this.PainelAtendentes.setOpaque(false);
@@ -36,9 +38,12 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaAtendentesDisponiveis = new ArrayList();
         this.listaIconesClientes = new ArrayList();
         this.listaIconesAtendentes = new ArrayList();
-        this.listaAtendentesEmAtendimento = new ArrayList();
+        //this.listaAtendentesEmAtendimento = new ArrayList();
+        this.listaAtendentesEmAtendimento = new AgenteAtendente[3];
         this.listaIconesAtendimento = new ArrayList();
         this.listaIconesEscritorio = new ArrayList();
+        this.listaAtendentesControleDeIntervalo = new ArrayList();
+        
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
             listaIconesClientes.add((JLabel) component);
@@ -46,7 +51,9 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         }
         cont = 0;
         for (Component component : PainelAtendentes.getComponents()) {
-            listaIconesAtendentes.add((JLabel) component);
+            JLabel icone = (JLabel) component;
+            icone.setVisible(false);
+            listaIconesAtendentes.add(icone);
             component.setName("Atendente" + (cont++));
         }
         cont = 0;
@@ -106,6 +113,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
         getContentPane().setLayout(null);
 
         Gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/gerenteIcon.png"))); // NOI18N
@@ -133,13 +141,13 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         PainelClientes.add(Cliente8);
         Cliente8.setBounds(90, 90, 70, 70);
         PainelClientes.add(Cliente9);
-        Cliente9.setBounds(400, 90, 70, 70);
+        Cliente9.setBounds(170, 90, 70, 70);
         PainelClientes.add(Cliente10);
-        Cliente10.setBounds(170, 90, 70, 70);
+        Cliente10.setBounds(250, 90, 70, 70);
         PainelClientes.add(Cliente11);
-        Cliente11.setBounds(250, 90, 70, 70);
+        Cliente11.setBounds(330, 90, 70, 70);
         PainelClientes.add(Cliente12);
-        Cliente12.setBounds(330, 90, 70, 70);
+        Cliente12.setBounds(400, 90, 70, 70);
         PainelClientes.add(Cliente13);
         Cliente13.setBounds(10, 170, 70, 70);
         PainelClientes.add(Cliente14);
@@ -175,11 +183,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
 
         PainelAtendimento.setLayout(null);
         PainelAtendimento.add(Cadeira1);
-        Cadeira1.setBounds(6, 0, 0, 0);
+        Cadeira1.setBounds(6, 0, 72, 76);
         PainelAtendimento.add(Cadeira2);
-        Cadeira2.setBounds(152, 0, 0, 0);
+        Cadeira2.setBounds(152, 0, 72, 76);
         PainelAtendimento.add(Cadeira3);
-        Cadeira3.setBounds(294, 0, 0, 0);
+        Cadeira3.setBounds(294, 0, 72, 76);
 
         getContentPane().add(PainelAtendimento);
         PainelAtendimento.setBounds(40, 170, 380, 80);
@@ -222,7 +230,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JanelaSimulacao().setVisible(true);
+                try {
+                    new JanelaSimulacao().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(JanelaSimulacao.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

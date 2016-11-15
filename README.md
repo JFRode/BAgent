@@ -19,3 +19,26 @@ O Agente atendente se desloca até o ponto de atendimento quando convocado pelo 
 O Agente cliente ao chegar a agencia solicita o atendimento de prioridade correspondente, e se encaminha a fila de atendimento. Ao ser atendinto este apresenta seus titulos ao Atendente sempre que solicitado.
 
 
+## Fluxo
+
+### 1 - Ao entrar na agência, o cliente solicita ao gerente uma senha para fila de atendimentos.
+
+### 2 - O Gerente fornece a senha e solicita ao cliente que se acomode para aguardar o atendimento.
+
+### 3 - O Cliente verifica qual cadeira está disponível e se desloca até a posição. 
+#### _Quando o cliente é criado na janela de simulação, é atribuido uma referência para uma cadeira na lista, de forma randomica, antes de se alocar o cliente verifica se a propriedade de visibilidade da Label está true, caso sim tenta outra cadeira.
+
+### 4 - O Gerente verifica a fila de atendimento e a quantidade de atendentes, caso necessário aloca mais um atendente.
+
+### 5 - Ao ser convocado para assumir os atendimentos, o atendente verifica qual o caixa disponível. Após se alocar o atendente chama o próximo da fila.
+  
+
+| Clientes | Atendentes |
+| ---- | ------- |
+| 0 a 6 | 1 |
+| 7 a 12 | 2 |
+| 13 a 18 | 3 |
+
+
+
+

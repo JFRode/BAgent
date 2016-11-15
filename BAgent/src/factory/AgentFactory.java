@@ -16,22 +16,21 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior
- *         Antonio Roque Falcão Junior
- *         Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
-
 public class AgentFactory {
 
     private ContainerController cc;
     private AgentController agentController;
 
-    public AgentFactory() {
+    public AgentFactory() throws InterruptedException {
         //Parametros para abrir o jade
         String[] parametros = {"-gui", "-local-host", "127.0.0.1"};
         jade.Boot.main(parametros);
 
         criarNovaAgencia();
+        Thread.sleep(500);
         criarClientes();
     }
 
@@ -48,10 +47,10 @@ public class AgentFactory {
             agentController = cc.createNewAgent("Gerente", AgenteGerente.class.getName(), new Object[]{JanelaSimulacao.Gerente});
             agentController.start();
             for (int i = 0; i < 3; i++) {
-                
+
                 agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{
                     JanelaSimulacao.listaIconesAtendentes.get(i),
-                    JanelaSimulacao.listaIconesAtendimento.get(i), 
+                    JanelaSimulacao.listaIconesAtendimento.get(i),
                     JanelaSimulacao.listaIconesEscritorio.get(i)});
                 agentController.start();
             }
@@ -67,20 +66,23 @@ public class AgentFactory {
                 int contCliente = 0;
                 Random rand = new Random();
                 while (true) {
-                    try {
-                        int numCliente = rand.nextInt(2) + 1;
-                        for (int i = 1; i <= numCliente; i++) {
-                            JLabel label = JanelaSimulacao.listaIconesClientes.get(rand.nextInt(JanelaSimulacao.listaIconesClientes.size()));
+                    if (JanelaSimulacao.listaClientesEmEspera.size() < 18) {
+                        try {
+                            //for (int i = 1; i <= numCliente; i++) {
+                            int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
+                            JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
                             JanelaSimulacao.listaIconesClientes.remove(label);
                             agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                             agentController.start();
                             contCliente++;
+                            //}
+                            int sleep = rand.nextInt(5) + 1;
+                            sleep(sleep * 1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (StaleProxyException ex) {
+                            Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        sleep(15000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (StaleProxyException ex) {
-                        Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
