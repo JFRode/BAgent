@@ -24,6 +24,7 @@ public class AgenteAtendente extends Agent {
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
+    private boolean descansar = false;
 
     public AgenteAtendente() {
         JanelaSimulacao.listaAtendentesDisponiveis.add(this);
@@ -62,12 +63,7 @@ public class AgenteAtendente extends Agent {
 
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
                         //System.out.println(getLocalName() + " recebe: " + content);
-                        imagemIcone.setVisible(false);
-                        imagemIconeEscritorio.setVisible(true);
-                        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = null;
-                        JanelaSimulacao.listaAtendentesControleDeIntervalo.remove(aThis);
-                        JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
-                        
+                        descansar = true;
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
                         //System.out.println(getLocalName() + " Recebe: " + content);
                         try {
@@ -87,7 +83,11 @@ public class AgenteAtendente extends Agent {
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        proximoCliente(myAgent);
+                        if (descansar) {
+                            descansar(divisor[1]);
+                        } else {
+                            proximoCliente(myAgent);
+                        }
                     }
                 }
             }
@@ -111,6 +111,14 @@ public class AgenteAtendente extends Agent {
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
             emAtendimento = true;
         }
+    }
+
+    public void descansar(String atendente) {
+        imagemIcone.setVisible(false);
+        imagemIconeEscritorio.setVisible(true);
+        JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(atendente)] = null;
+        JanelaSimulacao.listaAtendentesControleDeIntervalo.remove(aThis);
+        JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
     }
 
     public boolean emAtendimento() {
