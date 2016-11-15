@@ -47,6 +47,7 @@ public class AgenteAtendente extends Agent {
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
                         //System.out.println(getLocalName() + " Recebe: " + content);
                         //JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
+                        JanelaSimulacao.listaAtendentesControleDeIntervalo.add(aThis);
                         JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = aThis;
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
@@ -84,6 +85,7 @@ public class AgenteAtendente extends Agent {
                         imagemIcone.setVisible(false);
                         imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = null;
+                        JanelaSimulacao.listaAtendentesControleDeIntervalo.remove(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
                     }
                 }

@@ -21,6 +21,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static List<AgenteCliente> listaClientesEmEspera;
     public static List<AgenteCliente> listaClientesEmAtendimento;
     public static List<AgenteAtendente> listaAtendentesDisponiveis;
+    public static List<AgenteAtendente> listaAtendentesControleDeIntervalo;
     //public static List<AgenteAtendente> listaAtendentesEmAtendimento;
     public static AgenteAtendente[] listaAtendentesEmAtendimento;
     private AgentFactory agentFactory;
@@ -41,6 +42,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaAtendentesEmAtendimento = new AgenteAtendente[3];
         this.listaIconesAtendimento = new ArrayList();
         this.listaIconesEscritorio = new ArrayList();
+        this.listaAtendentesControleDeIntervalo = new ArrayList();
+        
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
             listaIconesClientes.add((JLabel) component);
