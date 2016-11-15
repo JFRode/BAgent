@@ -12,13 +12,11 @@ import visao.JanelaSimulacao;
 
 /**
  *
- * @author Ailton Cardoso Junior
- *         Antonio Roque Falcão Junior
- *         Joao Felipe Gonçalves
+ * @author Ailton Cardoso Junior Antonio Roque Falcão Junior Joao Felipe
+ * Gonçalves
  */
-
 public class AgenteAtendente extends Agent {
-    
+
     private AgenteAtendente aThis;
     private JLabel imagemIcone;
     private JLabel imagemIconeCadeiraDeAtendimento;
@@ -26,21 +24,21 @@ public class AgenteAtendente extends Agent {
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
-    
+
     public AgenteAtendente() {
         JanelaSimulacao.listaAtendentesDisponiveis.add(this);
         this.random = new Random();
         this.aThis = this;
     }
-    
+
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
         imagemIconeCadeiraDeAtendimento = (JLabel) getArguments()[1];
         imagemIconeEscritorio = (JLabel) getArguments()[2];
-        
+
         addBehaviour(new CyclicBehaviour(this) {
-            
+
             @Override
             public void action() {
                 ACLMessage msg = myAgent.receive();
@@ -52,9 +50,13 @@ public class AgenteAtendente extends Agent {
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
-                        
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         proximoCliente(myAgent);
-                        
+
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
                         //System.out.println(getLocalName() + " Recebe: " + content);
                         try {
@@ -62,33 +64,33 @@ public class AgenteAtendente extends Agent {
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
+
                         enviaMensagem(myAgent, cliente, "Boleto pago com sucesso, deseja pagar outro boleto?");
                     } else if (content.equalsIgnoreCase("Não tenho mais boletos para pagar.")) {
                         //System.out.println(getLocalName() + " recebe: " + content);
                         enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
                         emAtendimento = false;
-                        
+
                         try {
-                            Thread.sleep(2500);
+                            Thread.sleep(500);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         proximoCliente(myAgent);
-                        
+
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
                         //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         imagemIconeEscritorio.setVisible(true);
                         JanelaSimulacao.listaAtendentesEmAtendimento.remove(aThis);
                         JanelaSimulacao.listaAtendentesDisponiveis.add(aThis);
-                        
+
                     }
                 }
             }
         });
     }
-    
+
     public void enviaMensagem(Agent myAgent, String destino, String mensagem) {
         ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
         msg.addReceiver(new AID(destino, AID.ISLOCALNAME));
@@ -98,19 +100,19 @@ public class AgenteAtendente extends Agent {
         myAgent.send(msg);
         System.out.println(getLocalName() + " para " + destino + ": " + msg.getContent());
     }
-    
+
     public void proximoCliente(Agent myAgent) {
         if (!JanelaSimulacao.listaClientesEmEspera.isEmpty()) {
-            cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
+            cliente = JanelaSimulacao.listaClientesEmEspera.get(JanelaSimulacao.listaAtendentesEmAtendimento.indexOf(this)).getAID().getLocalName();
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
             emAtendimento = true;
         }
     }
-    
+
     public boolean emAtendimento() {
         return emAtendimento;
     }
-    
+
     public JLabel getImagemIconeCadeiraDeAtendimento() {
         return imagemIconeCadeiraDeAtendimento;
     }
