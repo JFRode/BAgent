@@ -34,7 +34,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         initComponents();
         this.setSize(830, 650);
         painelSenha.setVisible(true);
-        painelSenha.setText("0 0");
+        painelSenha.setText("0 | 0");
         painelSenha.setFont(new Font("SansSerif", Font.BOLD, 20));
 
         StyledDocument doc = painelSenha.getStyledDocument();
@@ -231,7 +231,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         jScrollPane1.setBorder(null);
         jScrollPane1.setMaximumSize(new java.awt.Dimension(80, 20));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(80, 20));
-        jScrollPane1.setWheelScrollingEnabled(false);
 
         painelSenha.setBackground(new java.awt.Color(0, 0, 0));
         painelSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -242,7 +241,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         jScrollPane1.setViewportView(painelSenha);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(440, 30, 70, 40);
+        jScrollPane1.setBounds(436, 30, 80, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
