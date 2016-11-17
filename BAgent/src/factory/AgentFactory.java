@@ -51,7 +51,11 @@ public class AgentFactory {
                 agentController = cc.createNewAgent("Atendente-" + (i), AgenteAtendente.class.getName(), new Object[]{
                     JanelaSimulacao.listaIconesAtendentes.get(i),
                     JanelaSimulacao.listaIconesAtendimento.get(i),
-                    JanelaSimulacao.listaIconesEscritorio.get(i)});
+                    JanelaSimulacao.listaIconesEscritorio.get(i),
+                    //Pegar a label do atendente para exibir as mensagens
+                    JanelaSimulacao.listaTipBalcao.get(i),
+                    //Pegar a label do cliente para exibir as mensagens
+                    JanelaSimulacao.listaTipBalcao.get(i+3)});
                 agentController.start();
             }
         } catch (StaleProxyException ex) {
@@ -68,14 +72,12 @@ public class AgentFactory {
                 while (true) {
                     if (JanelaSimulacao.listaClientesEmEspera.size() < 18) {
                         try {
-                            //for (int i = 1; i <= numCliente; i++) {
                             int numCadeira = rand.nextInt(JanelaSimulacao.listaIconesClientes.size());
                             JLabel label = JanelaSimulacao.listaIconesClientes.get(numCadeira);
                             JanelaSimulacao.listaIconesClientes.remove(label);
                             agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                             agentController.start();
                             contCliente++;
-                            //}
                             int sleep = rand.nextInt(5) + 1;
                             sleep(sleep * 1000);
                         } catch (InterruptedException ex) {
