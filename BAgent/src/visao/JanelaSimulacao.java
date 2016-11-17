@@ -22,11 +22,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static List<JLabel> listaIconesAtendentes;
     public static List<JLabel> listaIconesAtendimento;
     public static List<JLabel> listaIconesEscritorio;
+    public static List<JLabel> listaTipBalcao;
     public static List<AgenteCliente> listaClientesEmEspera;
     public static List<AgenteCliente> listaClientesEmAtendimento;
     public static List<AgenteAtendente> listaAtendentesDisponiveis;
     public static List<AgenteAtendente> listaAtendentesControleDeIntervalo;
-    //public static List<AgenteAtendente> listaAtendentesEmAtendimento;
     public static AgenteAtendente[] listaAtendentesEmAtendimento;
     private AgentFactory agentFactory;
 
@@ -51,11 +51,11 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaAtendentesDisponiveis = new ArrayList();
         this.listaIconesClientes = new ArrayList();
         this.listaIconesAtendentes = new ArrayList();
-        //this.listaAtendentesEmAtendimento = new ArrayList();
         this.listaAtendentesEmAtendimento = new AgenteAtendente[3];
         this.listaIconesAtendimento = new ArrayList();
         this.listaIconesEscritorio = new ArrayList();
         this.listaAtendentesControleDeIntervalo = new ArrayList();
+        this.listaTipBalcao = new ArrayList<>();
 
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
@@ -79,7 +79,22 @@ public class JanelaSimulacao extends javax.swing.JFrame {
             listaIconesEscritorio.add((JLabel) component);
             component.setName("Escritorio" + (cont++));
         }
+        listaTipBalcao.add(TipAtendente1);
+        listaTipBalcao.add(TipAtendente2);
+        listaTipBalcao.add(TipAtendente3);
+        listaTipBalcao.add(TipCliente1);
+        listaTipBalcao.add(TipCliente2);
+        listaTipBalcao.add(TipCliente3);
+        
         this.agentFactory = new AgentFactory();
+        /*TipAtendente1.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
+        TipCliente1.setText("<html>Sim, desejo pagar mais um boleto.");
+        
+        TipAtendente2.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
+        TipCliente2.setText("<html>Sim, desejo pagar mais um boleto.");
+        
+        TipAtendente3.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
+        TipCliente3.setText("<html>Sim, desejo pagar mais um boleto.");*/
     }
 
     /**
@@ -91,6 +106,12 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TipAtendente1 = new javax.swing.JLabel();
+        TipCliente1 = new javax.swing.JLabel();
+        TipAtendente2 = new javax.swing.JLabel();
+        TipCliente2 = new javax.swing.JLabel();
+        TipAtendente3 = new javax.swing.JLabel();
+        TipCliente3 = new javax.swing.JLabel();
         Gerente = new javax.swing.JLabel();
         PainelClientes = new javax.swing.JPanel();
         Cliente1 = new javax.swing.JLabel();
@@ -130,6 +151,37 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
         getContentPane().setLayout(null);
+
+        TipAtendente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipAtendente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipAtendente1);
+        TipAtendente1.setBounds(30, 10, 130, 30);
+
+        TipCliente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipCliente1);
+        TipCliente1.setBounds(40, 240, 110, 40);
+
+        TipAtendente2.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipAtendente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipAtendente2);
+        TipAtendente2.setBounds(170, 10, 130, 30);
+
+        TipCliente2.setBackground(new java.awt.Color(187, 187, 187));
+        TipCliente2.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipCliente2);
+        TipCliente2.setBounds(180, 240, 110, 40);
+
+        TipAtendente3.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipAtendente3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipAtendente3);
+        TipAtendente3.setBounds(310, 10, 130, 30);
+
+        TipCliente3.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipCliente3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipCliente3);
+        TipCliente3.setBounds(320, 240, 110, 40);
 
         Gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/gerenteIcon.png"))); // NOI18N
         Gerente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -302,6 +354,12 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     private javax.swing.JPanel PainelAtendimento;
     private javax.swing.JPanel PainelClientes;
     private javax.swing.JPanel PainelEscritorio;
+    public static javax.swing.JLabel TipAtendente1;
+    public static javax.swing.JLabel TipAtendente2;
+    public static javax.swing.JLabel TipAtendente3;
+    public static javax.swing.JLabel TipCliente1;
+    public static javax.swing.JLabel TipCliente2;
+    public static javax.swing.JLabel TipCliente3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
     public static javax.swing.JTextPane painelSenha;
