@@ -34,13 +34,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         initComponents();
         this.setSize(830, 650);
         painelSenha.setVisible(true);
-        painelSenha.setText("0 | 0");
-        painelSenha.setFont(new Font("SansSerif", Font.BOLD, 20));
-
-        StyledDocument doc = painelSenha.getStyledDocument();
-        SimpleAttributeSet center = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        painelSenha.setText("<html>  0|100");
 
         this.PainelAtendentes.setOpaque(false);
         this.PainelAtendimento.setOpaque(false);
@@ -107,6 +101,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     private void initComponents() {
 
         TipAtendente1 = new javax.swing.JLabel();
+        painelSenha = new javax.swing.JLabel();
         TipCliente1 = new javax.swing.JLabel();
         TipAtendente2 = new javax.swing.JLabel();
         TipCliente2 = new javax.swing.JLabel();
@@ -145,8 +140,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        painelSenha = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
@@ -156,6 +149,13 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         TipAtendente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(TipAtendente1);
         TipAtendente1.setBounds(30, 10, 130, 30);
+
+        painelSenha.setBackground(new java.awt.Color(255, 0, 0));
+        painelSenha.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        painelSenha.setForeground(new java.awt.Color(255, 0, 0));
+        painelSenha.setToolTipText("");
+        getContentPane().add(painelSenha);
+        painelSenha.setBounds(440, 30, 70, 40);
 
         TipCliente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -280,21 +280,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         getContentPane().add(labelBackground);
         labelBackground.setBounds(6, 6, 800, 600);
 
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(80, 20));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(80, 20));
-
-        painelSenha.setBackground(new java.awt.Color(0, 0, 0));
-        painelSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        painelSenha.setFont(new java.awt.Font("Adobe Arabic", 1, 18)); // NOI18N
-        painelSenha.setForeground(new java.awt.Color(255, 0, 0));
-        painelSenha.setMaximumSize(new java.awt.Dimension(80, 20));
-        painelSenha.setMinimumSize(new java.awt.Dimension(80, 20));
-        jScrollPane1.setViewportView(painelSenha);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(436, 30, 80, 40);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -360,8 +345,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static javax.swing.JLabel TipCliente1;
     public static javax.swing.JLabel TipCliente2;
     public static javax.swing.JLabel TipCliente3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
-    public static javax.swing.JTextPane painelSenha;
+    public static javax.swing.JLabel painelSenha;
     // End of variables declaration//GEN-END:variables
 }
