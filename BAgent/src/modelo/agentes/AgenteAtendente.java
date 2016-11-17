@@ -21,6 +21,8 @@ public class AgenteAtendente extends Agent {
     private JLabel imagemIcone;
     private JLabel imagemIconeCadeiraDeAtendimento;
     private JLabel imagemIconeEscritorio;
+    private JLabel tipAtendente;
+    private JLabel tipCliente;
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
@@ -37,6 +39,8 @@ public class AgenteAtendente extends Agent {
         imagemIcone = (JLabel) getArguments()[0];
         imagemIconeCadeiraDeAtendimento = (JLabel) getArguments()[1];
         imagemIconeEscritorio = (JLabel) getArguments()[2];
+        tipAtendente = (JLabel) getArguments()[3];
+        tipCliente = (JLabel) getArguments()[4];
 
         addBehaviour(new CyclicBehaviour(this) {
             String[] divisor = getAID().getLocalName().split("-");
@@ -47,42 +51,40 @@ public class AgenteAtendente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
-                        //System.out.println(getLocalName() + " Recebe: " + content);
-                        //JanelaSimulacao.listaAtendentesEmAtendimento.add(aThis);
                         JanelaSimulacao.listaAtendentesControleDeIntervalo.add(aThis);
                         JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = aThis;
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
                         imagemIconeEscritorio.setVisible(false);
                         imagemIcone.setVisible(true);
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        aguardar(1000);
                         proximoCliente(myAgent);
 
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
-                        //System.out.println(getLocalName() + " recebe: " + content);
                         descansar = true;
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
-                        //System.out.println(getLocalName() + " Recebe: " + content);
-                        try {
-                            Thread.sleep(random.nextInt(5) * 1000);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
+                        tipCliente.setVisible(true);
+                        tipCliente.setText("<html>" + content);
+                        aguardar(random.nextInt(5) * 1000);
+                        tipCliente.setVisible(false);
                         enviaMensagem(myAgent, cliente, "Boleto pago com sucesso, deseja pagar outro boleto?");
-                    } else if (content.equalsIgnoreCase("Não tenho mais boletos para pagar.")) {
-                        //System.out.println(getLocalName() + " recebe: " + content);
-                        enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
-                        emAtendimento = false;
 
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        tipAtendente.setVisible(true);
+                        tipAtendente.setText("<html>Boleto pago com sucesso, deseja pagar outro boleto?");
+                        aguardar(1500);
+                        tipAtendente.setVisible(false);
+                    } else if (content.equalsIgnoreCase("Não tenho mais boletos para pagar.")) {
+                        emAtendimento = false;
+                        tipCliente.setVisible(true);
+                        tipCliente.setText("<html>" + content);
+                        aguardar(1000);
+                        tipCliente.setVisible(false);
+                        aguardar(500);
+                        tipAtendente.setVisible(true);
+                        tipAtendente.setText("<html> Obrigado, volte sempre!");
+                        aguardar(1000);
+                        tipAtendente.setVisible(false);
+                        enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
+
                         if (descansar) {
                             descansar(divisor[1]);
                         } else {
@@ -112,18 +114,20 @@ public class AgenteAtendente extends Agent {
             int numeroCx = Integer.parseInt(cx[1]);
             numeroCx += 1;
             String guiche = Integer.toString(numeroCx);
-            
 
             String pass[] = cliente.split("-");
             int password = Integer.parseInt(pass[1]);
             password += 1;
             String senha = Integer.toString(password);
-            
-            
+
             JanelaSimulacao.painelSenha.setText(senha + " | " + guiche);
 
             JanelaSimulacao.listaClientesEmEspera.remove(0);
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
+            tipAtendente.setVisible(true);
+            tipAtendente.setText("<html> Próximo! Senha " + password);
+            aguardar(1000);
+            tipAtendente.setVisible(false);
             emAtendimento = true;
         }
     }
@@ -142,5 +146,17 @@ public class AgenteAtendente extends Agent {
 
     public JLabel getImagemIconeCadeiraDeAtendimento() {
         return imagemIconeCadeiraDeAtendimento;
+    }
+
+    public void exibirMensagem(String mensagem) {
+
+    }
+
+    public void aguardar(int tempo) {
+        try {
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
