@@ -2,6 +2,7 @@ package visao;
 
 import factory.AgentFactory;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -9,6 +10,9 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import modelo.agentes.AgenteAtendente;
 import modelo.agentes.AgenteCliente;
 
@@ -29,6 +33,15 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public JanelaSimulacao() throws InterruptedException {
         initComponents();
         this.setSize(830, 650);
+        painelSenha.setVisible(true);
+        painelSenha.setText("0 | 0");
+        painelSenha.setFont(new Font("SansSerif", Font.BOLD, 20));
+
+        StyledDocument doc = painelSenha.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+
         this.PainelAtendentes.setOpaque(false);
         this.PainelAtendimento.setOpaque(false);
         this.PainelClientes.setOpaque(false);
@@ -43,7 +56,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         this.listaIconesAtendimento = new ArrayList();
         this.listaIconesEscritorio = new ArrayList();
         this.listaAtendentesControleDeIntervalo = new ArrayList();
-        
+
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
             listaIconesClientes.add((JLabel) component);
@@ -65,7 +78,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         for (Component component : PainelEscritorio.getComponents()) {
             listaIconesEscritorio.add((JLabel) component);
             component.setName("Escritorio" + (cont++));
-        } 
+        }
         this.agentFactory = new AgentFactory();
     }
 
@@ -111,6 +124,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        painelSenha = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
@@ -213,6 +228,21 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         getContentPane().add(labelBackground);
         labelBackground.setBounds(6, 6, 800, 600);
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(80, 20));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(80, 20));
+
+        painelSenha.setBackground(new java.awt.Color(0, 0, 0));
+        painelSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelSenha.setFont(new java.awt.Font("Adobe Arabic", 1, 18)); // NOI18N
+        painelSenha.setForeground(new java.awt.Color(255, 0, 0));
+        painelSenha.setMaximumSize(new java.awt.Dimension(80, 20));
+        painelSenha.setMinimumSize(new java.awt.Dimension(80, 20));
+        jScrollPane1.setViewportView(painelSenha);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(436, 30, 80, 40);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,6 +302,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     private javax.swing.JPanel PainelAtendimento;
     private javax.swing.JPanel PainelClientes;
     private javax.swing.JPanel PainelEscritorio;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
+    public static javax.swing.JTextPane painelSenha;
     // End of variables declaration//GEN-END:variables
 }

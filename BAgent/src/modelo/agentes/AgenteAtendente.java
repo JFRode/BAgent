@@ -107,6 +107,21 @@ public class AgenteAtendente extends Agent {
     public void proximoCliente(Agent myAgent) {
         if (!JanelaSimulacao.listaClientesEmEspera.isEmpty()) {
             cliente = JanelaSimulacao.listaClientesEmEspera.get(0).getAID().getLocalName();
+
+            String cx[] = aThis.getLocalName().split("-");
+            int numeroCx = Integer.parseInt(cx[1]);
+            numeroCx += 1;
+            String guiche = Integer.toString(numeroCx);
+            
+
+            String pass[] = cliente.split("-");
+            int password = Integer.parseInt(pass[1]);
+            password += 1;
+            String senha = Integer.toString(password);
+            
+            
+            JanelaSimulacao.painelSenha.setText(senha + " | " + guiche);
+
             JanelaSimulacao.listaClientesEmEspera.remove(0);
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
             emAtendimento = true;
