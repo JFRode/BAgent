@@ -78,9 +78,8 @@ public class AgentFactory {
                             agentController = cc.createNewAgent("Cliente-" + contCliente, AgenteCliente.class.getName(), new Object[]{label});
                             agentController.start();
                             contCliente++;
-                            //int sleep = rand.nextInt(JanelaSimulacao.sliderTempoDeCriacao.getValue()) + 1;
-                            //sleep(sleep * 1000);
-                            sleep(JanelaSimulacao.sliderTempoDeCriacao.getValue() * 1000);
+                            int sleep = rand.nextInt(7) + 1;
+                            sleep(sleep * 1000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgentFactory.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (StaleProxyException ex) {

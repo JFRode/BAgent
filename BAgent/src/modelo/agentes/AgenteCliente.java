@@ -59,13 +59,10 @@ public class AgenteCliente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
                         imagemIcone.setVisible(true);
-                        //System.out.println(getLocalName() + " recebe: " + content);
                         aguardar(2000);
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
-                        //System.out.println(getLocalName() + " recebe: " + content);
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
-                        //JanelaSimulacao.listaClientesEmEspera.remove(aThis);
                         JanelaSimulacao.listaClientesEmAtendimento.add(aThis);
 
                         //  Identifica o balcao de atendimento e se dirige a ele
@@ -82,7 +79,6 @@ public class AgenteCliente extends Agent {
                         System.out.println("\n" + getLocalName() + ": Tenho " + qtdBoletos + "\n\n");
 
                     } else if (content.equalsIgnoreCase("Boleto pago com sucesso, deseja pagar outro boleto?")) {
-                        //System.out.println(getLocalName() + " Recebe: " + content);
                         qtdBoletos--;
                         if (qtdBoletos > 0) {
                             enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sim, desejo pagar mais um boleto.");
@@ -90,7 +86,6 @@ public class AgenteCliente extends Agent {
                             enviaMensagem(myAgent, msg.getSender().getLocalName(), "Não tenho mais boletos para pagar.");
                         }
                     } else if (content.equalsIgnoreCase("Obrigado, volte sempre!")) {
-                        //System.out.println(getLocalName() + " Recebe: " + content);
                         JanelaSimulacao.listaClientesEmAtendimento.remove(aThis);
                         imagemIcone.setVisible(false);
                         block();

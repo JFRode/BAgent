@@ -2,7 +2,6 @@ package visao;
 
 import factory.AgentFactory;
 import java.awt.Component;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -10,9 +9,6 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import modelo.agentes.AgenteAtendente;
 import modelo.agentes.AgenteCliente;
 
@@ -81,14 +77,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         listaTipBalcao.add(TipCliente3);
         
         this.agentFactory = new AgentFactory();
-        /*TipAtendente1.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
-        TipCliente1.setText("<html>Sim, desejo pagar mais um boleto.");
-        
-        TipAtendente2.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
-        TipCliente2.setText("<html>Sim, desejo pagar mais um boleto.");
-        
-        TipAtendente3.setText("<html>Boleto pago com sucesso,  deseja pagar outro boleto?");
-        TipCliente3.setText("<html>Sim, desejo pagar mais um boleto.");*/
     }
 
     /**
@@ -140,7 +128,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
-        sliderTempoDeCriacao = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
@@ -156,7 +143,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         painelSenha.setForeground(new java.awt.Color(255, 0, 0));
         painelSenha.setToolTipText("");
         getContentPane().add(painelSenha);
-        painelSenha.setBounds(440, 30, 70, 40);
+        painelSenha.setBounds(450, 30, 70, 40);
 
         TipCliente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -281,14 +268,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         getContentPane().add(labelBackground);
         labelBackground.setBounds(6, 6, 800, 600);
 
-        sliderTempoDeCriacao.setMajorTickSpacing(1);
-        sliderTempoDeCriacao.setMaximum(30);
-        sliderTempoDeCriacao.setMinimum(1);
-        sliderTempoDeCriacao.setMinorTickSpacing(1);
-        sliderTempoDeCriacao.setValue(5);
-        getContentPane().add(sliderTempoDeCriacao);
-        sliderTempoDeCriacao.setBounds(10, 610, 490, 16);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -356,6 +335,5 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static javax.swing.JLabel TipCliente3;
     private javax.swing.JLabel labelBackground;
     public static javax.swing.JLabel painelSenha;
-    public static javax.swing.JSlider sliderTempoDeCriacao;
     // End of variables declaration//GEN-END:variables
 }
