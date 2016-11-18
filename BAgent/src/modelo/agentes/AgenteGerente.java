@@ -18,6 +18,8 @@ public class AgenteGerente extends Agent {
 
     private int ultimaSenha;
     private JLabel imagemIcone;
+    private JLabel tipGerente;
+    private JLabel tipClienteGerente;
 
     public AgenteGerente() {
         this.ultimaSenha = 0;
@@ -26,6 +28,8 @@ public class AgenteGerente extends Agent {
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
+        tipGerente = (JLabel) getArguments()[1];
+        tipClienteGerente = (JLabel) getArguments()[2];
         addBehaviour(new CyclicBehaviour(this) {
 
             @Override
@@ -34,10 +38,26 @@ public class AgenteGerente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Quero uma senha para atendimento.")) {
+                        tipClienteGerente.setVisible(true);
+                        tipClienteGerente.setText("<html>" + content);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        tipClienteGerente.setVisible(false);
                         //System.out.println("Gerente recebe: " + content);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
+                        tipGerente.setVisible(true);
+                        tipGerente.setText("<html> Sua senha é " + ultimaSenha);
                         ultimaSenha++;
-
+                        
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        tipGerente.setVisible(false);
                         if (contarAtendentes() == 0) {
                             try {
                                 Thread.sleep(1000);
@@ -58,6 +78,7 @@ public class AgenteGerente extends Agent {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
                             }
                         }
+                       
                     }
                 }
             }

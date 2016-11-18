@@ -88,6 +88,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TipGerente = new javax.swing.JLabel();
+        TipClienteGerente = new javax.swing.JLabel();
         TipAtendente1 = new javax.swing.JLabel();
         painelSenha = new javax.swing.JLabel();
         TipCliente1 = new javax.swing.JLabel();
@@ -132,6 +134,16 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
         getContentPane().setLayout(null);
+
+        TipGerente.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipGerente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipGerente);
+        TipGerente.setBounds(520, 20, 90, 50);
+
+        TipClienteGerente.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        TipClienteGerente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(TipClienteGerente);
+        TipClienteGerente.setBounds(500, 280, 110, 40);
 
         TipAtendente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipAtendente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -333,6 +345,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static javax.swing.JLabel TipCliente1;
     public static javax.swing.JLabel TipCliente2;
     public static javax.swing.JLabel TipCliente3;
+    public static javax.swing.JLabel TipClienteGerente;
+    public static javax.swing.JLabel TipGerente;
     private javax.swing.JLabel labelBackground;
     public static javax.swing.JLabel painelSenha;
     // End of variables declaration//GEN-END:variables

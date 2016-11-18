@@ -23,6 +23,7 @@ public class AgenteAtendente extends Agent {
     private JLabel imagemIconeEscritorio;
     private JLabel tipAtendente;
     private JLabel tipCliente;
+    private JLabel tipGerente;
     private Random random;
     private String cliente;
     private boolean emAtendimento = false;
@@ -41,6 +42,7 @@ public class AgenteAtendente extends Agent {
         imagemIconeEscritorio = (JLabel) getArguments()[2];
         tipAtendente = (JLabel) getArguments()[3];
         tipCliente = (JLabel) getArguments()[4];
+        tipGerente = (JLabel) getArguments()[5];
 
         addBehaviour(new CyclicBehaviour(this) {
             String[] divisor = getAID().getLocalName().split("-");
@@ -51,6 +53,8 @@ public class AgenteAtendente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Vá atender por favor!")) {
+                        tipGerente.setVisible(true);
+                        tipGerente.setText("<html>"+content);
                         JanelaSimulacao.listaAtendentesControleDeIntervalo.add(aThis);
                         JanelaSimulacao.listaAtendentesEmAtendimento[Integer.valueOf(divisor[1])] = aThis;
                         JanelaSimulacao.listaAtendentesDisponiveis.remove(aThis);
@@ -58,9 +62,18 @@ public class AgenteAtendente extends Agent {
                         imagemIcone.setVisible(true);
                         aguardar(1000);
                         proximoCliente(myAgent);
+                        tipGerente.setVisible(false);
 
                     } else if (content.equalsIgnoreCase("Feche o caixa e aguarde ser chamado novamente.")) {
+                        tipGerente.setVisible(true);
+                        tipGerente.setText("<html>"+content);
                         descansar = true;
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AgenteAtendente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        tipGerente.setVisible(false);
                     } else if (content.equalsIgnoreCase("Tenho boletos para pagar.") || content.equalsIgnoreCase("Sim, desejo pagar mais um boleto.")) {
                         tipCliente.setVisible(true);
                         tipCliente.setText("<html>" + content);
