@@ -46,21 +46,20 @@ public class AgenteGerente extends Agent {
                             Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         tipClienteGerente.setVisible(false);
-                        //System.out.println("Gerente recebe: " + content);
                         enviaMensagem(myAgent, msg.getSender().getLocalName(), "Sua senha é Cliente-" + ultimaSenha);
                         tipGerente.setVisible(true);
-                        tipGerente.setText("<html> Sua senha é " + ultimaSenha);
+                        tipGerente.setText("<html> Sua senha é " + (ultimaSenha + 1));
                         ultimaSenha++;
                         
                         try {
-                            Thread.sleep(1500);
+                            Thread.sleep(1000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         tipGerente.setVisible(false);
                         if (contarAtendentes() == 0) {
                             try {
-                                Thread.sleep(1000);
+                                Thread.sleep(500);
                             } catch (InterruptedException ex) {
                                 Logger.getLogger(AgenteGerente.class.getName()).log(Level.SEVERE, null, ex);
                             }

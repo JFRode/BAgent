@@ -35,18 +35,16 @@ public class AgenteCliente extends Agent {
     @Override
     protected void setup() {
         imagemIcone = (JLabel) getArguments()[0];
+        imagemIcone.setVisible(false);
         imagemIcone.setIcon(icone);
         addBehaviour(new OneShotBehaviour() {
 
             @Override
             public void action() {
+                aguardar(500);
                 JanelaSimulacao.ClientePegaSenha.setVisible(true);
                 JanelaSimulacao.ClientePegaSenha.setIcon(icone);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(AgenteCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                aguardar(500);
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
                 msg.addReceiver(new AID("Gerente", AID.ISLOCALNAME));
                 msg.setLanguage("Português");
@@ -65,9 +63,10 @@ public class AgenteCliente extends Agent {
                 if (msg != null) {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
-                        imagemIcone.setVisible(true);
+                        aguardar(500);
                         JanelaSimulacao.ClientePegaSenha.setVisible(false);
-                        aguardar(2000);
+                        aguardar(500);
+                        imagemIcone.setVisible(true);
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
                         imagemIcone.setVisible(false);
                         JanelaSimulacao.listaIconesClientes.add(imagemIcone);   //  Cadeira passa a ser disponivel a outro cliente
