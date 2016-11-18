@@ -84,7 +84,6 @@ public class AgenteAtendente extends Agent {
                         aguardar(1000);
                         tipAtendente.setVisible(false);
                         enviaMensagem(myAgent, cliente, "Obrigado, volte sempre!");
-
                         if (descansar) {
                             descansar(divisor[1]);
                         } else {

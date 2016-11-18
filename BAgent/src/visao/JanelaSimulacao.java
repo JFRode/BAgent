@@ -32,24 +32,24 @@ public class JanelaSimulacao extends javax.swing.JFrame {
 
     public JanelaSimulacao() throws InterruptedException {
         initComponents();
-        this.setSize(830, 650);
+        this.setSize(830, 680);
         painelSenha.setVisible(true);
-        painelSenha.setText("<html>  0|100");
+        painelSenha.setText(" 0|0");
 
         this.PainelAtendentes.setOpaque(false);
         this.PainelAtendimento.setOpaque(false);
         this.PainelClientes.setOpaque(false);
         this.PainelEscritorio.setOpaque(false);
-        this.listaClientesEmEspera = new ArrayList();
-        this.listaClientesEmAtendimento = new ArrayList();
-        this.listaAtendentesDisponiveis = new ArrayList();
-        this.listaIconesClientes = new ArrayList();
-        this.listaIconesAtendentes = new ArrayList();
+        this.listaClientesEmEspera = new ArrayList(18);
+        this.listaClientesEmAtendimento = new ArrayList(3);
+        this.listaAtendentesDisponiveis = new ArrayList(3);
+        this.listaIconesClientes = new ArrayList(18);
+        this.listaIconesAtendentes = new ArrayList(3);
         this.listaAtendentesEmAtendimento = new AgenteAtendente[3];
-        this.listaIconesAtendimento = new ArrayList();
-        this.listaIconesEscritorio = new ArrayList();
+        this.listaIconesAtendimento = new ArrayList(3);
+        this.listaIconesEscritorio = new ArrayList(3);
         this.listaAtendentesControleDeIntervalo = new ArrayList();
-        this.listaTipBalcao = new ArrayList<>();
+        this.listaTipBalcao = new ArrayList<>(6);
 
         int cont = 0;
         for (Component component : PainelClientes.getComponents()) {
@@ -140,6 +140,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
+        sliderTempoDeCriacao = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
@@ -280,6 +281,14 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         getContentPane().add(labelBackground);
         labelBackground.setBounds(6, 6, 800, 600);
 
+        sliderTempoDeCriacao.setMajorTickSpacing(1);
+        sliderTempoDeCriacao.setMaximum(30);
+        sliderTempoDeCriacao.setMinimum(1);
+        sliderTempoDeCriacao.setMinorTickSpacing(1);
+        sliderTempoDeCriacao.setValue(5);
+        getContentPane().add(sliderTempoDeCriacao);
+        sliderTempoDeCriacao.setBounds(10, 610, 490, 16);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,5 +356,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     public static javax.swing.JLabel TipCliente3;
     private javax.swing.JLabel labelBackground;
     public static javax.swing.JLabel painelSenha;
+    public static javax.swing.JSlider sliderTempoDeCriacao;
     // End of variables declaration//GEN-END:variables
 }

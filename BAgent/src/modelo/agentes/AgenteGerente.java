@@ -47,22 +47,14 @@ public class AgenteGerente extends Agent {
                             enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
 
                         } else {
-                            /*int coeficiente = (JanelaSimulacao.listaClientesEmEspera.size() / JanelaSimulacao.listaAtendentesEmAtendimento.size());
-
-                            if (coeficiente >= 6 && JanelaSimulacao.listaAtendentesDisponiveis.size() > 0) {
-                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
-                            } else if (coeficiente <= 3 && !JanelaSimulacao.listaAtendentesEmAtendimento.get(0).emAtendimento()) {
-                                enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesEmAtendimento.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
-                            }*/
-
                             if (JanelaSimulacao.listaClientesEmEspera.size() > 6 && contarAtendentes() == 1) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
                             } else if (JanelaSimulacao.listaClientesEmEspera.size() > 12 && contarAtendentes() == 2) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesDisponiveis.get(0).getAID().getLocalName(), "Vá atender por favor!");
                             }
-                            if (JanelaSimulacao.listaClientesEmEspera.size() < 7 && contarAtendentes() > 1 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
+                            if (JanelaSimulacao.listaClientesEmEspera.size() < 7 && contarAtendentes() > 1) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
-                            } else if (JanelaSimulacao.listaClientesEmEspera.size() < 13 && contarAtendentes() > 2 && !JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).emAtendimento()) {
+                            } else if (JanelaSimulacao.listaClientesEmEspera.size() < 13 && contarAtendentes() > 2) {
                                 enviaMensagem(myAgent, JanelaSimulacao.listaAtendentesControleDeIntervalo.get(0).getAID().getLocalName(), "Feche o caixa e aguarde ser chamado novamente.");
                             }
                         }
