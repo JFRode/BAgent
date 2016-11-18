@@ -30,7 +30,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         initComponents();
         this.setSize(830, 680);
         painelSenha.setVisible(true);
-        painelSenha.setText(" 0|0");
+        painelSenha.setText("<html> 0 | 0");
 
         this.PainelAtendentes.setOpaque(false);
         this.PainelAtendimento.setOpaque(false);
@@ -139,7 +139,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         TipGerente.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipGerente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(TipGerente);
-        TipGerente.setBounds(520, 20, 90, 50);
+        TipGerente.setBounds(530, 20, 80, 50);
 
         TipClienteGerente.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipClienteGerente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -154,9 +154,10 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         painelSenha.setBackground(new java.awt.Color(255, 0, 0));
         painelSenha.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         painelSenha.setForeground(new java.awt.Color(255, 0, 0));
+        painelSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         painelSenha.setToolTipText("");
         getContentPane().add(painelSenha);
-        painelSenha.setBounds(450, 30, 70, 40);
+        painelSenha.setBounds(436, 31, 80, 40);
 
         TipCliente1.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

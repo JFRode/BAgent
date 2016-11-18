@@ -132,7 +132,7 @@ public class AgenteAtendente extends Agent {
             password += 1;
             String senha = Integer.toString(password);
 
-            JanelaSimulacao.painelSenha.setText(" " + senha + "|" + guiche);
+            JanelaSimulacao.painelSenha.setText("<html>"+senha+" | "+guiche);
 
             JanelaSimulacao.listaClientesEmEspera.remove(0);
             enviaMensagem(myAgent, cliente, "Próximo! Senha " + cliente);
