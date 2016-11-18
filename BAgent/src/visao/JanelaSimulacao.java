@@ -103,7 +103,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Cliente2 = new javax.swing.JLabel();
         Cliente3 = new javax.swing.JLabel();
         Cliente4 = new javax.swing.JLabel();
-        Cliente5 = new javax.swing.JLabel();
         Cliente6 = new javax.swing.JLabel();
         Cliente7 = new javax.swing.JLabel();
         Cliente8 = new javax.swing.JLabel();
@@ -117,6 +116,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Cliente16 = new javax.swing.JLabel();
         Cliente17 = new javax.swing.JLabel();
         Cliente18 = new javax.swing.JLabel();
+        Cliente19 = new javax.swing.JLabel();
         PainelAtendentes = new javax.swing.JPanel();
         Atendente1 = new javax.swing.JLabel();
         Atendente2 = new javax.swing.JLabel();
@@ -130,6 +130,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Escritorio2 = new javax.swing.JLabel();
         Escritorio3 = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
+        ClientePegaSenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BAgent - GitHub: /Ailtonjr   /AntonioFalcao   /JFRode");
@@ -199,8 +200,6 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Cliente3.setBounds(170, 10, 70, 70);
         PainelClientes.add(Cliente4);
         Cliente4.setBounds(250, 10, 70, 70);
-        PainelClientes.add(Cliente5);
-        Cliente5.setBounds(330, 10, 70, 70);
         PainelClientes.add(Cliente6);
         Cliente6.setBounds(400, 10, 70, 70);
         PainelClientes.add(Cliente7);
@@ -227,6 +226,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         Cliente17.setBounds(330, 170, 70, 70);
         PainelClientes.add(Cliente18);
         Cliente18.setBounds(400, 170, 70, 70);
+        PainelClientes.add(Cliente19);
+        Cliente19.setBounds(330, 10, 70, 70);
 
         getContentPane().add(PainelClientes);
         PainelClientes.setBounds(20, 320, 480, 270);
@@ -279,6 +280,8 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc/bancoModelo.png"))); // NOI18N
         getContentPane().add(labelBackground);
         labelBackground.setBounds(6, 6, 800, 600);
+        getContentPane().add(ClientePegaSenha);
+        ClientePegaSenha.setBounds(520, 210, 70, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -323,14 +326,15 @@ public class JanelaSimulacao extends javax.swing.JFrame {
     private javax.swing.JLabel Cliente16;
     private javax.swing.JLabel Cliente17;
     private javax.swing.JLabel Cliente18;
+    private javax.swing.JLabel Cliente19;
     private javax.swing.JLabel Cliente2;
     private javax.swing.JLabel Cliente3;
     private javax.swing.JLabel Cliente4;
-    private javax.swing.JLabel Cliente5;
     private javax.swing.JLabel Cliente6;
     private javax.swing.JLabel Cliente7;
     private javax.swing.JLabel Cliente8;
     private javax.swing.JLabel Cliente9;
+    public static javax.swing.JLabel ClientePegaSenha;
     private javax.swing.JLabel Escritorio1;
     private javax.swing.JLabel Escritorio2;
     private javax.swing.JLabel Escritorio3;

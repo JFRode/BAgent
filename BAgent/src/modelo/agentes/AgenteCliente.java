@@ -40,6 +40,13 @@ public class AgenteCliente extends Agent {
 
             @Override
             public void action() {
+                JanelaSimulacao.ClientePegaSenha.setVisible(true);
+                JanelaSimulacao.ClientePegaSenha.setIcon(icone);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AgenteCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
                 msg.addReceiver(new AID("Gerente", AID.ISLOCALNAME));
                 msg.setLanguage("Português");
@@ -59,6 +66,7 @@ public class AgenteCliente extends Agent {
                     String content = msg.getContent();
                     if (content.equalsIgnoreCase("Sua senha é " + getLocalName())) {
                         imagemIcone.setVisible(true);
+                        JanelaSimulacao.ClientePegaSenha.setVisible(false);
                         aguardar(2000);
                     } else if (content.equalsIgnoreCase("Próximo! Senha " + getLocalName())) {
                         imagemIcone.setVisible(false);
