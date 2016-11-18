@@ -178,7 +178,7 @@ public class JanelaSimulacao extends javax.swing.JFrame {
         TipAtendente3.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipAtendente3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(TipAtendente3);
-        TipAtendente3.setBounds(310, 10, 130, 30);
+        TipAtendente3.setBounds(300, 10, 130, 30);
 
         TipCliente3.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         TipCliente3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
